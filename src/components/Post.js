@@ -7,8 +7,10 @@ import ThreeDotsLoading from "../assets/icons/ThreeDotsLoading";
 
 import FirstComment from "./FirstComment";
 import { useGetCommentsByIdQuery } from "../redux/services/quoraApi";
+import { useNavigate } from "react-router-dom";
 
 const Post = React.forwardRef(({ post }, ref) => {
+  const navigate = useNavigate();
   const [commentVisibility, setCommentVisibility] = useState(false);
   const { author, content, channel, title, likeCount, commentCount, _id } =
     post;
@@ -22,11 +24,18 @@ const Post = React.forwardRef(({ post }, ref) => {
     setCommentVisibility(!commentVisibility);
   };
 
+  const goToUser = () => {
+    navigate(`/user/${author._id}`);
+  };
+
   const postBody = (
     <div className="mb-2 rounded border bg-white">
       <div className="px-3 pt-3 rounded border bg-white">
         <div className="flex flex-nowrap items-start mb-2">
-          <div className="h-9 w-9 mr-2 flex-shrink-0 cursor-pointer">
+          <div
+            onClick={goToUser}
+            className="h-9 w-9 mr-2 flex-shrink-0 cursor-pointer"
+          >
             <img
               src={author.profileImage}
               alt="authorProfileImage"
@@ -35,7 +44,10 @@ const Post = React.forwardRef(({ post }, ref) => {
           </div>
           <div>
             <div className="leading-none">
-              <span className="md:text-xs text-sm font-bold">
+              <span
+                onClick={goToUser}
+                className="md:text-xs text-sm font-bold cursor-pointer"
+              >
                 {author.name}
               </span>
               <span className="text-xs text-blue-600 cursor-pointer">

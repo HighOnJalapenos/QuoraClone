@@ -38,8 +38,20 @@ export default function MainContent() {
   return (
     <div>
       <AskQuestion />
-      {content}
-      {isLoading && <p className="text-center">Loading Posts</p>}
+      {isLoading ? (
+        <div className="animate-pulse bg-[rgb(239, 240, 240)]">
+          {results.map((_, index) => {
+            return (
+              <div
+                key={index}
+                className="h-48 bg-gray-200 mb-3 border border-[#dee0e1]"
+              ></div>
+            );
+          })}
+        </div>
+      ) : (
+        content
+      )}
     </div>
   );
 }
