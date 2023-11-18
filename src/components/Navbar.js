@@ -12,6 +12,9 @@ import UserDropdown from "./NavDropdowns/UserDropdown";
 import LanguageDropdown from "./NavDropdowns/LanguageDropdown";
 
 import { useState, useRef, useEffect } from "react";
+import QuestionModal from "./Portal/QuestionModal";
+import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [inputBoxVisibility, setInputBoxVisibility] = useState(false);
@@ -19,7 +22,19 @@ export default function Navbar() {
   const userRef = useRef();
   const [languageDropdownVisibility, setLanguageDropdownVisibility] =
     useState(false);
+  const [showQuestionModal, setShowQuestionModal] = useState(false);
+  const portal = document.getElementById("portal");
   const languageRef = useRef();
+  const navigate = useNavigate();
+
+  const openQuestionModal = () => {
+    document.documentElement.style.overflow = "hidden";
+    setShowQuestionModal(true);
+  };
+
+  const closeQuestionModal = () => {
+    setShowQuestionModal(false);
+  };
 
   useEffect(() => {
     const handler = (e) => {
@@ -74,7 +89,12 @@ export default function Navbar() {
             </div>
           </li>
           {/* Answer on the Navbar */}
-          <li className="h-full relative flex items-center px-2 group cursor-pointer">
+          <li
+            className="h-full relative flex items-center px-2 group cursor-pointer"
+            onClick={() => {
+              navigate("/answer");
+            }}
+          >
             <InactiveAnswer />
             <div className="absolute hidden h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
             <div className="absolute bg-white py-2 px-4 w-fit right-[-36%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
@@ -160,9 +180,17 @@ export default function Navbar() {
         </div>
 
         <div className="flex-shrink-0">
-          <button className="bg-[#b92b27] text-white text-sm px-3 h-[30px] rounded-full">
+          <button
+            onClick={openQuestionModal}
+            className="bg-[#b92b27] text-white text-sm px-3 h-[30px] rounded-full"
+          >
             Add question
           </button>
+          {showQuestionModal &&
+            createPortal(
+              <QuestionModal onClose={closeQuestionModal} />,
+              portal
+            )}
         </div>
       </nav>
     </header>

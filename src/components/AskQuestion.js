@@ -9,12 +9,11 @@ export default function AskQuestion() {
   const portal = document.getElementById("portal");
 
   const openQuestionModal = () => {
+    document.documentElement.style.overflow = "hidden";
     setShowQuestionModal(true);
-    console.log(showQuestionModal);
   };
 
   const closeQuestionModal = () => {
-    console.log("debug");
     setShowQuestionModal(false);
   };
 
@@ -34,7 +33,10 @@ export default function AskQuestion() {
           createPortal(<QuestionModal onClose={closeQuestionModal} />, portal)}
       </div>
       <div className="flex flex-row my-1 items-center text-[#636466]">
-        <button className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full">
+        <button
+          onClick={openQuestionModal}
+          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full"
+        >
           Ask
         </button>
         <div className="border-r border-[#dee0e1] mx-1 h-4"></div>
@@ -42,7 +44,10 @@ export default function AskQuestion() {
           Answer
         </button>
         <div className="border-r border-[#dee0e1] mx-1 h-4"></div>
-        <button className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full">
+        <button
+          onClick={openQuestionModal}
+          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full"
+        >
           Post
         </button>
       </div>

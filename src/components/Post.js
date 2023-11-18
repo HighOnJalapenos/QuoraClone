@@ -65,7 +65,9 @@ const Post = React.forwardRef(({ post }, ref) => {
           </div>
         </div>
 
-        <div className="font-bold text-lg">{title}</div>
+        <div className="font-bold text-lg cursor-pointer hover:underline">
+          {title}
+        </div>
         <div className="font-light">{content}</div>
 
         <div className="flex justify-between py-1">
