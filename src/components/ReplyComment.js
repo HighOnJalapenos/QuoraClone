@@ -1,4 +1,3 @@
-import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { BiUserCircle } from "react-icons/bi";
 import Comments from "./Comments";
 import { useGetUserByIdQuery } from "../redux/services/quoraApi";
@@ -22,7 +21,7 @@ const ReplyComment = ({ comment }) => {
 
   return (
     <div key={comment._id}>
-      <div className="flex">
+      <div className="flex pb-2">
         {profileImage ? (
           <img
             onClick={goToUser}
@@ -46,16 +45,6 @@ const ReplyComment = ({ comment }) => {
             {beautifiedName}
           </div>
           <div className="text-sm">{comment.content}</div>
-          <div className="flex items-center">
-            <div className="flex border rounded-full border-[#dee0e1] bg-[#00000108] my-1">
-              <button className="px-3 h-[30px] flex items-center border-r rounded-l-full hover:bg-[#00000008]">
-                <ImArrowUp size={15} color="blue" />
-              </button>
-              <button className="px-3 rounded-r-full hover:bg-[#00000008]">
-                <ImArrowDown size={15} color="#636466" />
-              </button>
-            </div>
-          </div>
           <Comments children={comment.children} />
         </div>
       </div>

@@ -16,7 +16,6 @@ export default function MainContent() {
 
       intObserver.current = new IntersectionObserver((post) => {
         if (post[0].isIntersecting && hasNextPage) {
-          console.log("We are near the last post");
           setPageNum((prev) => prev + 1);
         }
       });

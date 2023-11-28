@@ -68,12 +68,22 @@ export default function Navbar() {
   return (
     <header className="hidden navSmall:block border-b bg-white border-[#dee0e1] fixed top-0 left-0 right-0 z-40">
       <nav className="max-w-[1100px] h-[50px] m-auto flex flex-row items-center">
-        <div className="mr-6 h-full">
+        <div
+          onClick={() => {
+            navigate("/");
+          }}
+          className="mr-6 h-full cursor-pointer"
+        >
           <Logo width={"87.8261px"} height={"50px"} fill={"rgb(185, 43, 39)"} />
         </div>
         <ul className="h-full flex gap-5">
           {/* Home on the Navbar */}
-          <li className="h-full relative flex items-center px-2 group cursor-pointer">
+          <li
+            className="h-full relative flex items-center px-2 group cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <ActiveHome />
             <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
             <div className="absolute bg-white py-2 px-4 w-fit right-[-30%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
@@ -103,7 +113,10 @@ export default function Navbar() {
           </li>
 
           {/* Spaces on the Navbar */}
-          <li className="h-full relative flex items-center px-2 group cursor-pointer">
+          <li
+            onClick={() => navigate("/spaces")}
+            className="h-full relative flex items-center px-2 group cursor-pointer"
+          >
             <InactiveSpaces />
             <div className="absolute hidden h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
             <div className="absolute bg-white py-2 px-4 w-fit right-[-35%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">

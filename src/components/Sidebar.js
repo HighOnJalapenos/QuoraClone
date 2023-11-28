@@ -1,12 +1,16 @@
+import { useGetSpacesQuery } from "../redux/services/quoraApi";
 import SidebarButton from "./SidebarButton";
 
 export default function Sidebar() {
-  const arr = new Array(10).fill(null);
+  const { data } = useGetSpacesQuery();
+  const spacesArray = data?.data;
   return (
     <>
       <div className="mb-4">
-        {arr.map((_, index) => {
-          return <SidebarButton key={index} />;
+        {spacesArray?.map((space, index) => {
+          return (
+            <SidebarButton key={index} name={space.name} img={space.image} />
+          );
         })}
       </div>
       <div className="text-xs text-[#939598] overflow-visible leading-6 py-2">

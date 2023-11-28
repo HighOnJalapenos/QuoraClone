@@ -1,3 +1,22 @@
 body {
   background-color: rgb(239, 240, 240);
+  overflow-y: scroll;
+}
+
+/* body::-webkit-scrollbar {
+  display: none;
+} */
+
+#textarea-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+#textarea-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 9999em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px 10px inset;
+  border: 2px solid transparent;
+}
+
+#textarea-scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
 }
