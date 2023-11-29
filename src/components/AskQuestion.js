@@ -1,12 +1,25 @@
 import { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
-
+import { toast } from "react-toastify";
 import QuestionModal from "./Portal/QuestionModal";
 import { createPortal } from "react-dom";
 
 export default function AskQuestion() {
   const [showQuestionModal, setShowQuestionModal] = useState(false);
   const portal = document.getElementById("portal");
+
+  const notify = (message) => {
+    toast(`${message}`, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   const openQuestionModal = () => {
     document.documentElement.style.overflow = "hidden";
@@ -30,7 +43,10 @@ export default function AskQuestion() {
           </div>
         </div>
         {showQuestionModal &&
-          createPortal(<QuestionModal onClose={closeQuestionModal} />, portal)}
+          createPortal(
+            <QuestionModal notify={notify} onClose={closeQuestionModal} />,
+            portal
+          )}
       </div>
       <div className="flex flex-row my-1 items-center text-[#636466]">
         <button

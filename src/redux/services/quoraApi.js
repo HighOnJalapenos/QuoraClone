@@ -24,13 +24,16 @@ export const quoraApi = createApi({
       query: (userId) => `/user/${userId}`,
     }),
     getSpaces: builder.query({
-      query: () => `channel?limit=10&page=1`,
+      query: () => `/channel?limit=10&page=1`,
     }),
     getSpacesById: builder.query({
-      query: (spaceId) => `channel/${spaceId}`,
+      query: (spaceId) => `/channel/${spaceId}`,
     }),
     getSpacesPostById: builder.query({
-      query: (spaceId) => `channel/${spaceId}/posts`,
+      query: (spaceId) => `/channel/${spaceId}/posts`,
+    }),
+    getUserPost: builder.query({
+      query: (userId) => `/user/${userId}/posts`,
     }),
   }),
 });
@@ -42,4 +45,5 @@ export const {
   useGetSpacesQuery,
   useGetSpacesByIdQuery,
   useGetSpacesPostByIdQuery,
+  useGetUserPostQuery,
 } = quoraApi;

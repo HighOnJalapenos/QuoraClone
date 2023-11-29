@@ -5,7 +5,6 @@ export default function SmallSpaces({ space }) {
   const { image, name, description, _id } = space;
   const navigate = useNavigate();
 
-  console.log(space);
   return (
     <div
       className="h-52 sm:w-44 w-32 border rounded mb-2 rounded-t-lg bg-white cursor-pointer"

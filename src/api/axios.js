@@ -28,7 +28,7 @@ export const getSpacePostsPage = async (
 
 export const setLike = async (postId, notify) => {
   try {
-    const response = await api.post(`/like/${postId}`);
+    await api.post(`/like/${postId}`);
     notify("Post liked!!");
     return true;
   } catch (error) {
@@ -40,9 +40,8 @@ export const setLike = async (postId, notify) => {
 
 export const setDislike = async (postId, notify) => {
   try {
-    const response = await api.delete(`/like/${postId}`);
+    await api.delete(`/like/${postId}`);
     notify("Post disliked.");
-    return true;
   } catch (error) {
     console.log(error);
     notify(`${error.response.data.message}`);

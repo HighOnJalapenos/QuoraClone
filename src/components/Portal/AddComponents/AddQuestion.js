@@ -3,7 +3,7 @@ import { GoPeople } from "react-icons/go";
 
 import { useState, useRef } from "react";
 
-const AddQuestion = () => {
+const AddQuestion = ({ setFormData }) => {
   const [wordCountWarning, setWordCountWarning] = useState(false);
   const [question, setQuestion] = useState("");
   const ref = useRef();
@@ -16,6 +16,13 @@ const AddQuestion = () => {
 
   const handleInput = (e) => {
     setQuestion(e.target.value);
+    setFormData((prev) => ({
+      ...prev,
+      title: e.target.value,
+      content: "",
+      images: "",
+    }));
+
     if (250 - question.length < 25) {
       setWordCountWarning(true);
     } else {
@@ -27,6 +34,7 @@ const AddQuestion = () => {
       ref.current.style.height = `${e.target.scrollHeight}px`;
     }
   };
+
   return (
     <div className="overflow-y-auto h-full">
       <div className="px-4 my-4">
@@ -67,7 +75,7 @@ const AddQuestion = () => {
               maxLength={250}
               onKeyDown={handleEnterKey}
               ref={ref}
-              onInput={handleInput}
+              onChange={handleInput}
               rows={1}
               placeholder='Start your question with "What", "Why", "How" etc.'
               className="w-full focus:outline-none text-[18px] leading-[1.4] sm:h-[26px] h-[50px] min-h-[26px] resize-none break-words"

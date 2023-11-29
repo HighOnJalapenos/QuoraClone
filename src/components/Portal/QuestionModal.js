@@ -1,10 +1,19 @@
 import { GrClose } from "react-icons/gr";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { api } from "../../api/axios";
 
 import AddQuestion from "./AddComponents/AddQuestion";
 import AddPost from "./AddComponents/AddPost";
 
-const QuestionModal = ({ onClose }) => {
+const QuestionModal = ({ onClose, notify }) => {
+  const ref = useRef();
+  const initialFormData = {
+    title: "",
+    content: "",
+    images: null,
+  };
+
+  const [formData, setFormData] = useState(initialFormData);
   const [showPost, setShowPost] = useState(false);
 
   const handleClick = (e) => {
@@ -33,12 +42,33 @@ const QuestionModal = ({ onClose }) => {
     }
   };
 
+  const handleAddPost = (e) => {
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("content", formData.content);
+    data.append("images", formData.images);
+    console.log(formData);
+    e.preventDefault();
+    api
+      .post("/post", data)
+      .then((response) => {
+        notify("Post has been added");
+        onClose();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div
       onClick={handleClick}
       className="fixed inset-0 h-screen w-screen z-40 bg-[rgba(36,36,36,0.9)] flex justify-center items-center"
     >
-      <div className="w-[730px] max-w-[100vw] h-full sm:max-h-[70vh] sm:min-h-[400px] min-h-screen bg-white rounded-lg flex-col flex relative">
+      <form
+        ref={ref}
+        className="w-[730px] max-w-[100vw] h-full sm:max-h-[70vh] sm:min-h-[400px] min-h-screen bg-white rounded-lg flex-col flex relative"
+      >
         <div className="z-20">
           <div className="p-2 flex items-center justify-between">
             <button
@@ -47,7 +77,11 @@ const QuestionModal = ({ onClose }) => {
             >
               <GrClose className="m-auto" size={18} color="rgb(99, 100, 102)" />
             </button>
-            <button className="min-w-[38px] h-[38px] bg-[#2e69ff] text-white px-[20px] rounded-full">
+            <button
+              type="submit"
+              onClick={handleAddPost}
+              className="min-w-[38px] h-[38px] bg-[#2e69ff] text-white px-[20px] rounded-full"
+            >
               Add
             </button>
           </div>
@@ -72,8 +106,12 @@ const QuestionModal = ({ onClose }) => {
           </div>
         </div>
 
-        {!showPost ? <AddQuestion /> : <AddPost />}
-      </div>
+        {!showPost ? (
+          <AddQuestion setFormData={setFormData} />
+        ) : (
+          <AddPost setFormData={setFormData} />
+        )}
+      </form>
     </div>
   );
 };

@@ -4,29 +4,27 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { FaRegComment } from "react-icons/fa";
-import { LuMoreHorizontal } from "react-icons/lu";
 import ThreeDotsLoading from "../assets/icons/ThreeDotsLoading";
-import DefaultPhoto from "../assets/facebook-profile-picture-no-pic-avatar.webp";
 import FirstComment from "./FirstComment";
 import { Link } from "react-router-dom";
 
-const Post = React.forwardRef(({ post, image, isPost }, ref) => {
+export default function UserPost({ post, image, isPost, setRefetchPosts }) {
   const [commentVisibility, setCommentVisibility] = useState(false);
   const [upVote, setUpVote] = useState(false);
   const [downVote, setDownVote] = useState(false);
-  const { author, content, channel, title, likeCount, commentCount, _id } =
-    post;
-  const [likes, setLikes] = useState(likeCount || 0);
+  const { content, title, _id, author } = post;
   const [refetchComment, setRefetchComment] = useState(0);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [newComment, setNewComment] = useState("");
+  const [userPost, setUserPost] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
         setIsLoading(true);
         const response = await api.get(`/post/${_id}/comments`);
+        console.log(response);
         setComments(response?.data?.data);
       } catch (error) {
         console.log(error);
@@ -38,6 +36,12 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
       fetchComments();
     }
   }, [refetchComment, commentVisibility]);
+
+  useEffect(() => {
+    if (author === "6538dbb07831f45044740153") {
+      setUserPost(true);
+    }
+  }, []);
 
   const showComment = () => {
     setCommentVisibility(!commentVisibility);
@@ -59,28 +63,22 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
   const like = () => {
     if (!upVote && !downVote) {
       setUpVote(true);
-      setLikes((prev) => prev + 1);
       setLike(_id, notify);
     } else if (downVote) {
       setDownVote(false);
-      setLikes((prev) => prev + 1);
     } else {
       setUpVote(false);
-      setLikes((prev) => prev - 1);
     }
   };
 
   const dislike = () => {
     if (!upVote && !downVote) {
       setDownVote(true);
-      setLikes((prev) => prev - 1);
       setDislike(_id, notify);
     } else if (upVote) {
       setUpVote(false);
-      setLikes((prev) => prev - 1);
     } else {
       setDownVote(false);
-      setLikes((prev) => prev + 1);
     }
   };
 
@@ -101,48 +99,20 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
     }
   };
 
-  const postBody = (
+  const deletePost = () => {
+    api
+      .delete(`/post/${_id}`)
+      .then((response) => {
+        setRefetchPosts((prev) => prev + 1);
+        notify("Post has been deleted");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  return (
     <>
       <div className="mb-2 rounded border bg-white">
         <div className="px-3 pt-3 rounded border bg-white">
-          <div className="flex flex-nowrap items-start mb-2">
-            <Link to={`/user/${author._id}`}>
-              <div className="h-9 w-9 mr-2 flex-shrink-0 cursor-pointer">
-                <img
-                  src={author ? author.profileImage : DefaultPhoto}
-                  alt="authorProfileImage"
-                  className="rounded-full"
-                />
-              </div>
-            </Link>
-            <div>
-              <div className="leading-none">
-                <Link to={`/user/${author._id}`}>
-                  <span className="md:text-xs text-sm font-bold cursor-pointer">
-                    {author.name || ""}
-                  </span>
-                </Link>
-                <span
-                  onClick={notify}
-                  className="text-xs text-blue-600 cursor-pointer"
-                >
-                  {" "}
-                  • Follow
-                </span>
-              </div>
-              <div className="leading-none text-[#636466]">
-                {channel && (
-                  <>
-                    <span className="text-xs">Posted in the channel</span>
-                    <span className="text-xs text-black cursor-pointer">
-                      {" "}
-                      {channel.name}
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
-          </div>
           <Link to={isPost ? null : `/question/${_id}`}>
             <div
               className={`font-bold text-lg ${
@@ -168,11 +138,11 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
                 >
                   <ImArrowUp size={15} color={upVote ? "#2e69ff" : "#636466"} />
                   <div
-                    className={`transition text-sm ml-1 ${
+                    className={`transition text-sm ml-1 sm:block hidden ${
                       upVote ? "text-[#2e69ff]" : "text-[#636466]"
                     }`}
                   >
-                    Upvote • {likes}
+                    Upvote
                   </div>
                 </button>
                 <button
@@ -190,15 +160,22 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
                 className="px-2 flex items-center h-full hover:bg-[#00000008] rounded-full cursor-pointer"
               >
                 <FaRegComment size={20} color="#636466" />
-                <span className="text-[#636466] text-sm ml-1">
-                  {commentCount}
-                </span>
               </span>
             </div>
 
-            <div className="flex items-center">
-              <LuMoreHorizontal size={20} />
-            </div>
+            {userPost && (
+              <div className="flex items-center">
+                <button className="px-2 py-1 mr-2 text-sm border rounded-full hover:opacity-75 hover:border-slate-800 transition">
+                  Edit
+                </button>
+                <button
+                  onClick={deletePost}
+                  className="px-2 py-1 text-sm border rounded-full hover:opacity-75 hover:border-slate-800 transition"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -244,8 +221,8 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
             comments?.toReversed()?.map((comment) => {
               return (
                 <FirstComment
-                  notify={notify}
                   setRefetchComment={setRefetchComment}
+                  notify={notify}
                   key={comment._id}
                   comment={comment}
                 />
@@ -255,14 +232,4 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
       </div>
     </>
   );
-
-  const postContent = ref ? (
-    <div ref={ref}>{postBody}</div>
-  ) : (
-    <div>{postBody}</div>
-  );
-
-  return postContent;
-});
-
-export default Post;
+}

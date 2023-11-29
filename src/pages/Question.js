@@ -127,7 +127,13 @@ export default function Question() {
         </div>
 
         {commentData?.toReversed().map((singleAnswer) => {
-          return <Answers key={singleAnswer._id} singleAnswer={singleAnswer} />;
+          return (
+            <Answers
+              key={singleAnswer._id}
+              setRefetchComment={setRefetchComment}
+              singleAnswer={singleAnswer}
+            />
+          );
         })}
       </div>
     </div>
