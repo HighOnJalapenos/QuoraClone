@@ -9,6 +9,7 @@ import FirstComment from "./FirstComment";
 import { Link } from "react-router-dom";
 
 export default function UserPost({ post, image, isPost, setRefetchPosts }) {
+  console.log(post);
   const [commentVisibility, setCommentVisibility] = useState(false);
   const [upVote, setUpVote] = useState(false);
   const [downVote, setDownVote] = useState(false);
@@ -113,7 +114,10 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
     <>
       <div className="mb-2 rounded border bg-white">
         <div className="px-3 pt-3 rounded border bg-white">
-          <Link to={isPost ? null : `/question/${_id}`}>
+          <Link
+            className="cursor-default"
+            to={isPost ? null : `/question/${_id}`}
+          >
             <div
               className={`font-bold text-lg ${
                 !isPost && "cursor-pointer hover:underline"

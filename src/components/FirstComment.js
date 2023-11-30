@@ -100,7 +100,10 @@ const FirstComment = ({ comment, setRefetchComment, notify }) => {
             )}
 
             <div className="ml-2">
-              <div onClick={goToUser} className="font-bold text-sm">
+              <div
+                onClick={goToUser}
+                className="font-bold text-sm cursor-pointer"
+              >
                 {beautifiedName}
               </div>
               <div className="text-sm pb-2">{comment.content}</div>

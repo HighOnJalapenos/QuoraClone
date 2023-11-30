@@ -6,6 +6,7 @@ import Question from "./pages/Question";
 import Spaces from "./pages/Spaces";
 import SingleSpace from "./pages/SingleSpace";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -44,6 +45,7 @@ function App() {
             <Route path="spaces/:id" element={<SingleSpace />} />
           </Route>
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </QueryClientProvider>
     </>

@@ -1,13 +1,10 @@
-import { useState } from "react";
 import BackgroundImage from "../assets/-4-ans_frontend_assets.webp";
 import Logo from "../assets/icons/Logo";
 import Input from "../components/AuthComponents/Input";
 import SubmitButton from "../components/AuthComponents/SubmitButton";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-  const [updatePassword, setUpdatePassword] = useState(false);
-
+export default function SignUp() {
   return (
     <div
       style={{ backgroundImage: `url(${BackgroundImage})` }}
@@ -26,19 +23,17 @@ const Login = () => {
         <div className="px-6">
           <form className="mx-auto max-w-[300px]">
             <div className="pb-2 mb-4 border-b border-[#dee0e1] flex justify-between">
-              <div>Login</div>
-              <Link to="/signup">
+              <div>Sign Up</div>
+              <Link to="/login">
                 <button className="text-sm px-2 opacity-50 hover:opacity-100 border border-white hover:border-[rgb(185,43,39)] rounded">
-                  Sign Up
+                  Log In
                 </button>
               </Link>
             </div>
 
-            {updatePassword && (
-              <div className="mb-4">
-                <Input label={"Name"} type={"text"} placeholder={"Your name"} />
-              </div>
-            )}
+            <div className="mb-4">
+              <Input label={"Name"} type={"text"} placeholder={"Your name"} />
+            </div>
 
             <div className="mb-4">
               <Input
@@ -49,40 +44,18 @@ const Login = () => {
             </div>
             <div className="mb-4">
               <Input
-                label={updatePassword ? "Current Password" : "Password"}
+                label={"Password"}
                 type={"password"}
-                placeholder={
-                  updatePassword ? "Current Password" : "Your password"
-                }
+                placeholder={"Your password"}
               />
             </div>
 
-            {updatePassword && (
-              <div className="mb-4">
-                <Input
-                  label={"New Password"}
-                  type={"password"}
-                  placeholder={"New Password"}
-                />
-              </div>
-            )}
-
-            <div className="flex justify-between items-center pb-6">
-              <div
-                onClick={() => setUpdatePassword(!updatePassword)}
-                className="text-xs text-[#939598] cursor-pointer hover:underline"
-              >
-                {updatePassword ? "Go Back" : "Update Password"}
-              </div>
-              <SubmitButton
-                text={updatePassword ? "Update Password" : "Login"}
-              />
+            <div className="flex justify-end pb-6">
+              <SubmitButton text={"Sign up"} />
             </div>
           </form>
         </div>
       </div>
     </div>
   );
-};
-
-export default Login;
+}

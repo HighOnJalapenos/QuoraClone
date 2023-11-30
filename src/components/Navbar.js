@@ -7,14 +7,20 @@ import {
   InactiveFollowing,
   InactiveNotification,
   InactiveSpaces,
+  InactiveHome,
+  ActiveFollowing,
+  ActiveAnswer,
+  ActiveSpaces,
+  ActiveNotification,
 } from "../assets/icons/IconCollection";
 import UserDropdown from "./NavDropdowns/UserDropdown";
 import LanguageDropdown from "./NavDropdowns/LanguageDropdown";
+import { toast } from "react-toastify";
 
 import { useState, useRef, useEffect } from "react";
 import QuestionModal from "./Portal/QuestionModal";
 import { createPortal } from "react-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [inputBoxVisibility, setInputBoxVisibility] = useState(false);
@@ -65,6 +71,19 @@ export default function Navbar() {
     setLanguageDropdownVisibility(!languageDropdownVisibility);
   };
 
+  const notify = (message) => {
+    toast(`${message}`, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <header className="hidden navSmall:block border-b bg-white border-[#dee0e1] fixed top-0 left-0 right-0 z-40">
       <nav className="max-w-[1100px] h-[50px] m-auto flex flex-row items-center">
@@ -78,59 +97,87 @@ export default function Navbar() {
         </div>
         <ul className="h-full flex gap-5">
           {/* Home on the Navbar */}
-          <li
-            className="h-full relative flex items-center px-2 group cursor-pointer"
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            <ActiveHome />
-            <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
-            <div className="absolute bg-white py-2 px-4 w-fit right-[-30%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
-              Home
-            </div>
+
+          <li className="h-full relative flex items-center px-2 group cursor-pointer">
+            <NavLink to="/">
+              {({ isActive, isPending, isTransitioning }) => (
+                <>
+                  {isActive ? <ActiveHome /> : <InactiveHome />}
+                  {isActive && (
+                    <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
+                  )}
+                  <div className="absolute bg-white py-2 px-4 w-fit right-[-30%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    Home
+                  </div>
+                </>
+              )}
+            </NavLink>
           </li>
           {/* Following on the Navbar */}
           <li className="h-full relative flex items-center px-2 group cursor-pointer">
-            <InactiveFollowing />
-            <div className="absolute hidden h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
-            <div className="absolute bg-white py-2 px-4 w-fit right-[-45%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
-              Following
-            </div>
+            <NavLink to="/following">
+              {({ isActive, isPending, isTransitioning }) => (
+                <>
+                  {isActive ? <ActiveFollowing /> : <InactiveFollowing />}
+                  {isActive && (
+                    <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
+                  )}
+                  <div className="absolute bg-white py-2 px-4 w-fit right-[-45%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    Following
+                  </div>
+                </>
+              )}
+            </NavLink>
           </li>
           {/* Answer on the Navbar */}
-          <li
-            className="h-full relative flex items-center px-2 group cursor-pointer"
-            onClick={() => {
-              navigate("/answer");
-            }}
-          >
-            <InactiveAnswer />
-            <div className="absolute hidden h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
-            <div className="absolute bg-white py-2 px-4 w-fit right-[-36%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
-              Answer
-            </div>
+          <li className="h-full relative flex items-center px-2 group cursor-pointer">
+            <NavLink to="/answer">
+              {({ isActive, isPending, isTransitioning }) => (
+                <>
+                  {isActive ? <ActiveAnswer /> : <InactiveAnswer />}
+                  {isActive && (
+                    <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
+                  )}
+                  <div className="absolute bg-white py-2 px-4 w-fit right-[-36%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    Answer
+                  </div>
+                </>
+              )}
+            </NavLink>
           </li>
 
           {/* Spaces on the Navbar */}
-          <li
-            onClick={() => navigate("/spaces")}
-            className="h-full relative flex items-center px-2 group cursor-pointer"
-          >
-            <InactiveSpaces />
-            <div className="absolute hidden h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
-            <div className="absolute bg-white py-2 px-4 w-fit right-[-35%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
-              Spaces
-            </div>
+          <li className="h-full relative flex items-center px-2 group cursor-pointer">
+            <NavLink to="/spaces">
+              {({ isActive, isPending, isTransitioning }) => (
+                <>
+                  {isActive ? <ActiveSpaces /> : <InactiveSpaces />}
+                  {isActive && (
+                    <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
+                  )}
+                  <div className="absolute bg-white py-2 px-4 w-fit right-[-35%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    Spaces
+                  </div>
+                </>
+              )}
+            </NavLink>
           </li>
 
           {/* Notification on the Navbar */}
           <li className="h-full relative flex items-center px-2 group cursor-pointer">
-            <InactiveNotification />
-            <div className="absolute hidden h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
-            <div className="absolute bg-white py-2 px-4 w-fit right-[-60%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
-              Notification
-            </div>
+            <NavLink to="/notification">
+              {({ isActive, isPending, isTransitioning }) => (
+                <>
+                  {isActive ? <ActiveNotification /> : <InactiveNotification />}
+                  {isActive && (
+                    <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
+                  )}
+                  <div className="absolute bg-white py-2 px-4 w-fit right-[-60%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    Notification
+                  </div>
+                </>
+              )}
+            </NavLink>
           </li>
         </ul>
         <div className={`flex w-full`}>
@@ -201,7 +248,7 @@ export default function Navbar() {
           </button>
           {showQuestionModal &&
             createPortal(
-              <QuestionModal onClose={closeQuestionModal} />,
+              <QuestionModal notify={notify} onClose={closeQuestionModal} />,
               portal
             )}
         </div>
