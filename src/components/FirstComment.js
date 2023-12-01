@@ -13,9 +13,10 @@ const FirstComment = ({ comment, setRefetchComment, notify }) => {
   const navigate = useNavigate();
   const { data, isLoading } = useGetUserByIdQuery(comment.author);
   const author = data?.data;
+  const { userId } = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    if (comment.author === "6538dbb07831f45044740153") {
+    if (comment.author === userId) {
       setUserComment(true);
     }
   }, []);
@@ -50,8 +51,7 @@ const FirstComment = ({ comment, setRefetchComment, notify }) => {
     e.preventDefault();
     api
       .delete(`/comment/${comment._id}`)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         notify("Comment deleted");
         setRefetchComment((prev) => prev + 1);
       })

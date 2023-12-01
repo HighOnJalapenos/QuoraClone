@@ -9,16 +9,20 @@ import FirstComment from "./FirstComment";
 import { Link } from "react-router-dom";
 
 export default function UserPost({ post, image, isPost, setRefetchPosts }) {
-  console.log(post);
+  const { content, title, _id, author } = post;
+  const { userId } = JSON.parse(localStorage.getItem("user"));
+
   const [commentVisibility, setCommentVisibility] = useState(false);
   const [upVote, setUpVote] = useState(false);
   const [downVote, setDownVote] = useState(false);
-  const { content, title, _id, author } = post;
   const [refetchComment, setRefetchComment] = useState(0);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [userPost, setUserPost] = useState(false);
+  const [currentlyEditing, setCurrentlyEditing] = useState(false);
+  const [updatedTitle, setUpdatedTitle] = useState(title);
+  const [updatedContent, setUpdatedContent] = useState(content);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -39,7 +43,7 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
   }, [refetchComment, commentVisibility]);
 
   useEffect(() => {
-    if (author === "6538dbb07831f45044740153") {
+    if (author === userId) {
       setUserPost(true);
     }
   }, []);
@@ -110,23 +114,63 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
       .catch((error) => console.log(error));
   };
 
+  const handleEditing = () => {
+    if (!currentlyEditing) {
+      setCurrentlyEditing(true);
+      return;
+    }
+    const formData = new FormData();
+    formData.append("content", updatedContent);
+    formData.append("title", updatedTitle);
+    api
+      .patch(`/post/${_id}`, formData)
+      .then((response) => {
+        setCurrentlyEditing(false);
+        setRefetchPosts((prev) => prev + 1);
+        notify("Post has been edited");
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <div className="mb-2 rounded border bg-white">
         <div className="px-3 pt-3 rounded border bg-white">
-          <Link
-            className="cursor-default"
-            to={isPost ? null : `/question/${_id}`}
-          >
-            <div
-              className={`font-bold text-lg ${
-                !isPost && "cursor-pointer hover:underline"
-              }`}
-            >
-              {title}
+          {currentlyEditing ? (
+            <div className="flex flex-col">
+              <input
+                onChange={(e) => setUpdatedTitle(e.target.value)}
+                className="my-1 border rounded p-2"
+                type="text"
+                value={updatedTitle}
+              ></input>
+              {content && (
+                <textarea
+                  onChange={(e) => setUpdatedContent(e.target.value)}
+                  rows={4}
+                  className="resize-none my-1 border rounded p-2"
+                  value={updatedContent}
+                ></textarea>
+              )}
             </div>
-          </Link>
-          <div className="font-light">{content}</div>
+          ) : (
+            <>
+              <Link
+                className="cursor-default"
+                to={isPost ? null : `/question/${_id}`}
+              >
+                <div
+                  className={`font-bold text-lg ${
+                    !isPost && "cursor-pointer hover:underline"
+                  }`}
+                >
+                  {title}
+                </div>
+              </Link>
+              <div className="font-light">{content}</div>
+            </>
+          )}
+
           {image && (
             <div>
               <img className="bg-slate-300" src={image} alt="postImg" />
@@ -169,8 +213,11 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
 
             {userPost && (
               <div className="flex items-center">
-                <button className="px-2 py-1 mr-2 text-sm border rounded-full hover:opacity-75 hover:border-slate-800 transition">
-                  Edit
+                <button
+                  onClick={handleEditing}
+                  className="px-2 py-1 mr-2 text-sm border rounded-full hover:opacity-75 hover:border-slate-800 transition"
+                >
+                  {currentlyEditing ? "Save" : "Edit"}
                 </button>
                 <button
                   onClick={deletePost}

@@ -20,13 +20,12 @@ export default function SingleSpace() {
   }
 
   const { image, description, name } = data.data;
-  console.log(data);
   const spacePost = spacePostData?.data;
 
   return (
-    <div className="mt-[51px]">
+    <div className="navSmall:mt-[51px] mt-[88px]">
       <div className="bg-gradient-to-b from-slate-400 to-black">
-        <div className="w-[1072px] m-auto text-white">
+        <div className="navSmall:w-[1072px] w-full m-auto text-white">
           <div className="rounded-b">
             <img
               src={image}
@@ -47,8 +46,8 @@ export default function SingleSpace() {
         </div>
       </div>
 
-      <div className="w-[1072px] m-auto flex justify-between px-6">
-        <div className="w-[658px]">
+      <div className="navSmall:w-[1072px] w-full m-auto flex justify-between px-2 sm:px-6">
+        <div className="sm:w-[658px] w-full">
           <div className="border-b mb-2">
             <div className="px-4 py-3 w-fit text-sm border-b-[3px] border-[#195faa] cursor-pointer">
               Posts ({spacePost ? spacePost.length : 0})
