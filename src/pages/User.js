@@ -7,6 +7,8 @@ import DefaultImage from "../assets/facebook-profile-picture-no-pic-avatar.webp"
 import { RiUserAddLine } from "react-icons/ri";
 import UserPost from "../components/UserPost";
 import { useEffect, useState } from "react";
+import { api } from "../api/axios";
+import { toast } from "react-toastify";
 
 export default function User() {
   const [refetchPosts, setRefetchPosts] = useState(0);
@@ -33,6 +35,19 @@ export default function User() {
     phone,
     isFollowed,
   } = userData || {};
+  const [isfollowing, setIsFollowing] = useState(isFollowed);
+  const notify = (message) => {
+    toast(`${message}`, {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   useEffect(() => {
     refetch();
@@ -40,6 +55,18 @@ export default function User() {
       setUserPost(true);
     }
   }, [refetchPosts]);
+
+  const handleFollowing = () => {
+    if (isfollowing) {
+      api.delete(`/follow/${id}`).catch((error) => console.log(error));
+      setIsFollowing(false);
+      notify("Unfollowed");
+    } else {
+      api.post(`/follow/${id}`).catch((error) => console.log(error));
+      setIsFollowing(true);
+      notify("Following");
+    }
+  };
 
   return (
     <div className="navSmall:mt-[50px] mt-[72px] bg-white">
@@ -83,13 +110,19 @@ export default function User() {
                   )}
                   <div>
                     {!userPost &&
-                      (isFollowed ? (
-                        <button className="flex items-center text-blue-500 bg-white px-4 h-[30px] rounded-full text-sm border border-blue-500">
+                      (isfollowing ? (
+                        <button
+                          onClick={handleFollowing}
+                          className="flex items-center text-blue-500 bg-white px-4 h-[30px] rounded-full text-sm border border-blue-500"
+                        >
                           <RiUserAddLine className="inline-block mr-1 fill-blue-500" />{" "}
                           Following
                         </button>
                       ) : (
-                        <button className="flex items-center bg-blue-500 text-white px-4 h-[30px] rounded-full text-sm">
+                        <button
+                          onClick={handleFollowing}
+                          className="flex items-center bg-blue-500 text-white px-4 h-[30px] rounded-full text-sm"
+                        >
                           <RiUserAddLine
                             className="inline-block mr-1"
                             color="white"

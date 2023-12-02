@@ -6,10 +6,15 @@ export default function Sidebar() {
   const spacesArray = data?.data;
   return (
     <>
-      <div className="mb-4">
+      <div className="mb-4 border-b">
         {spacesArray?.map((space, index) => {
           return (
-            <SidebarButton key={index} name={space.name} img={space.image} />
+            <SidebarButton
+              key={index}
+              id={space._id}
+              name={space.name}
+              img={space.image}
+            />
           );
         })}
       </div>

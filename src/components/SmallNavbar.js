@@ -7,9 +7,15 @@ import {
   InactiveFollowing,
   InactiveNotification,
   InactiveSpaces,
+  ActiveHome,
+  ActiveFollowing,
+  ActiveSpaces,
+  ActiveAnswer,
+  ActiveNotification,
 } from "../assets/icons/IconCollection";
 import { BiUserCircle } from "react-icons/bi";
 import { CiGlobe } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
 
 const SmallNavbar = () => {
   return (
@@ -33,27 +39,61 @@ const SmallNavbar = () => {
       </div>
 
       <div className="h-11 bg-[#f7f7f8] flex">
-        <div className="px-2 h-full border-r flex items-center justify-center flex-1">
-          <InactiveHome />
-        </div>
-        <div className="px-2 h-full border-r flex items-center justify-center flex-1">
-          <InactiveFollowing />
-        </div>
-        <div className="px-2 h-full border-r flex items-center justify-center flex-1">
-          <InactiveAnswer />
-        </div>
-        <div className="px-2 h-full border-r flex items-center justify-center flex-1">
-          <InactiveSpaces />
-        </div>
-        <div className="px-2 h-full border-r flex items-center justify-center flex-1">
-          <InactiveNotification />
-        </div>
-        <div className="px-2 h-full border-r flex items-center justify-center flex-1">
-          <BiUserCircle size={24} />
-        </div>
-        <div className="px-2 h-full flex items-center justify-center flex-1">
-          <CiGlobe size={24} />
-        </div>
+        <NavLink className="flex-1" to="/">
+          {({ isActive }) => (
+            <>
+              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+                {isActive ? <ActiveHome /> : <InactiveHome />}
+              </div>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink className="flex-1" to="/following">
+          {({ isActive }) => (
+            <>
+              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+                {isActive ? <ActiveFollowing /> : <InactiveFollowing />}
+              </div>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink className="flex-1" to="/answer">
+          {({ isActive }) => (
+            <>
+              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+                {isActive ? <ActiveAnswer /> : <InactiveAnswer />}
+              </div>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink className="flex-1" to="/spaces">
+          {({ isActive }) => (
+            <>
+              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+                {isActive ? <ActiveSpaces /> : <InactiveSpaces />}
+              </div>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink className="flex-1" to="/notification">
+          {({ isActive }) => (
+            <>
+              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+                {isActive ? ActiveNotification : <InactiveNotification />}
+              </div>
+            </>
+          )}
+        </NavLink>
+
+        <NavLink className="flex-1" to="/notification">
+          <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+            <BiUserCircle size={24} color="rgb(99,100,102)" />
+          </div>
+        </NavLink>
       </div>
     </header>
   );

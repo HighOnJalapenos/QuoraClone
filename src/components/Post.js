@@ -122,13 +122,6 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
                     {author.name || ""}
                   </span>
                 </Link>
-                <span
-                  onClick={notify}
-                  className="text-xs text-blue-600 cursor-pointer"
-                >
-                  {" "}
-                  • Follow
-                </span>
               </div>
               <div className="leading-none text-[#636466]">
                 {channel && (
@@ -196,9 +189,9 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
               </span>
             </div>
 
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
               <LuMoreHorizontal size={20} />
-            </div>
+            </div> */}
           </div>
         </div>
 

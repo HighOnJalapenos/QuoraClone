@@ -99,10 +99,6 @@ export default function Answers({ singleAnswer, setRefetchComment }) {
               >
                 {authorData?.data?.name}
               </span>
-              <span className="text-xs text-blue-600 cursor-pointer">
-                {" "}
-                • Follow
-              </span>
             </div>
           </div>
         </div>
