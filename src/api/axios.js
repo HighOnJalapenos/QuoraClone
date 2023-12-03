@@ -4,10 +4,20 @@ export const api = axios.create({
   baseURL: "https://academics.newtonschool.co/api/v1/quora",
   headers: {
     projectID: "bf75w0rs1tml",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzhkYmIwNzgzMWY0NTA0NDc0MDE1MyIsImlhdCI6MTY5ODIyNTA3MiwiZXhwIjoxNzI5NzYxMDcyfQ.RtCUVC2clGdfJ5plyFM2rVbGWjItX1LTrXxiwvIjJ5A",
   },
 });
+
+api.interceptors.request.use(
+  (config) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = user.token;
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export const authApi = axios.create({
   baseURL: "https://academics.newtonschool.co/api/v1/user",

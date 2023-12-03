@@ -3,7 +3,8 @@ import {
   useGetSpacesByIdQuery,
   useGetSpacesPostByIdQuery,
 } from "../redux/services/quoraApi";
-import SingleSpacePost from "../components/SingleSpacePost";
+import SingleSpacePost from "../components/SpaceComponents/SingleSpacePost";
+import DefaultImage from "../assets/facebook-profile-picture-no-pic-avatar.webp";
 
 export default function SingleSpace() {
   const { id } = useParams();
@@ -28,15 +29,15 @@ export default function SingleSpace() {
         <div className="navSmall:w-[1072px] w-full m-auto text-white">
           <div className="rounded-b">
             <img
-              src={image}
+              src={image || DefaultImage}
               alt="bannerImg"
               className="h-[207px] w-full object-cover blur border-b rounded-b"
             />
           </div>
           <div>
             <img
-              className="ml-6 mt-[-90px] relative h-30 w-30 rounded-3xl"
-              src={image}
+              className="ml-6 mt-[-90px] relative h-28 w-28 object-cover rounded-3xl"
+              src={image || DefaultImage}
               alt="profileImg"
             />
           </div>

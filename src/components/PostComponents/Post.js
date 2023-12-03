@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { api, setLike, setDislike } from "../api/axios";
+import { api, setLike, setDislike } from "../../api/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { FaRegComment } from "react-icons/fa";
-import { LuMoreHorizontal } from "react-icons/lu";
-import ThreeDotsLoading from "../assets/icons/ThreeDotsLoading";
-import DefaultPhoto from "../assets/facebook-profile-picture-no-pic-avatar.webp";
-import FirstComment from "./FirstComment";
-import { Link } from "react-router-dom";
+import ThreeDotsLoading from "../../assets/icons/ThreeDotsLoading";
+import DefaultPhoto from "../../assets/facebook-profile-picture-no-pic-avatar.webp";
+import FirstComment from "../CommentComponents/FirstComment";
+import { Link, useNavigate } from "react-router-dom";
 
 const Post = React.forwardRef(({ post, image, isPost }, ref) => {
+  const navigate = useNavigate();
   const [commentVisibility, setCommentVisibility] = useState(false);
   const [upVote, setUpVote] = useState(false);
   const [downVote, setDownVote] = useState(false);
@@ -88,7 +88,7 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
     e.preventDefault();
     if (newComment.trim()) {
       try {
-        const response = await api.post(`/comment/${_id}`, {
+        await api.post(`/comment/${_id}`, {
           content: newComment,
         });
       } catch (error) {
@@ -127,7 +127,10 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
                 {channel && (
                   <>
                     <span className="text-xs">Posted in the channel</span>
-                    <span className="text-xs text-black cursor-pointer">
+                    <span
+                      onClick={() => navigate(`/spaces/${channel._id}`)}
+                      className="text-xs text-black cursor-pointer"
+                    >
                       {" "}
                       {channel.name}
                     </span>
@@ -188,10 +191,6 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
                 </span>
               </span>
             </div>
-
-            {/* <div className="flex items-center">
-              <LuMoreHorizontal size={20} />
-            </div> */}
           </div>
         </div>
 

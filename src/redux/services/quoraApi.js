@@ -33,6 +33,10 @@ export const quoraApi = createApi({
     getUserPost: builder.query({
       query: (userId) => `/user/${userId}/posts`,
     }),
+    getSearchPost: builder.query({
+      query: (term) =>
+        `/post?search=${encodeURIComponent(JSON.stringify({ title: term }))}`,
+    }),
   }),
 });
 
@@ -44,4 +48,5 @@ export const {
   useGetSpacesByIdQuery,
   useGetSpacesPostByIdQuery,
   useGetUserPostQuery,
+  useGetSearchPostQuery,
 } = quoraApi;

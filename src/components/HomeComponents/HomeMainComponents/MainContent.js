@@ -1,8 +1,8 @@
 import AskQuestion from "./AskQuestion";
-import Post from "./Post";
+import Post from "../../PostComponents/Post";
 
 import { useState, useRef, useCallback } from "react";
-import usePosts from "../hooks/usePosts";
+import usePosts from "../../../hooks/usePosts";
 
 export default function MainContent() {
   const [pageNum, setPageNum] = useState(1);
@@ -39,7 +39,7 @@ export default function MainContent() {
       <AskQuestion />
       {isLoading ? (
         <div className="animate-pulse bg-[rgb(239, 240, 240)]">
-          {results.map((_, index) => {
+          {results.map((result, index) => {
             return (
               <div
                 key={index}

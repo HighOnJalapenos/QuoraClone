@@ -12,12 +12,12 @@ import {
   ActiveAnswer,
   ActiveSpaces,
   ActiveNotification,
-} from "../assets/icons/IconCollection";
+} from "../../assets/icons/IconCollection";
 import UserDropdown from "./NavDropdowns/UserDropdown";
 import LanguageDropdown from "./NavDropdowns/LanguageDropdown";
 import { toast } from "react-toastify";
 import { useState, useRef, useEffect } from "react";
-import QuestionModal from "./Portal/QuestionModal";
+import QuestionModal from "../Portal/QuestionModal";
 import { createPortal } from "react-dom";
 import { useNavigate, NavLink } from "react-router-dom";
 
@@ -40,6 +40,7 @@ export default function Navbar() {
   };
 
   const closeQuestionModal = () => {
+    document.documentElement.style.overflow = "";
     setShowQuestionModal(false);
   };
 
@@ -87,6 +88,8 @@ export default function Navbar() {
 
   const search = (e) => {
     e.preventDefault();
+    setSearching(false);
+    navigate("/search", { state: { term: searchTerm } });
   };
 
   return (
@@ -223,7 +226,10 @@ export default function Navbar() {
                 inputBoxVisibility && "hidden"
               }`}
             >
-              <button className="text-sm text-[#636466] hover:bg-[#6364661a] rounded-full border border-[#dee0e1] h-[30px] px-4 min-w-[30px]">
+              <button
+                onClick={() => navigate("/quoraplus")}
+                className="text-sm text-[#636466] hover:bg-[#6364661a] rounded-full border border-[#dee0e1] h-[30px] px-4 min-w-[30px]"
+              >
                 Try Quora+
               </button>
             </div>

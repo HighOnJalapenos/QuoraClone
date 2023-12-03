@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Answers from "../components/Answers";
+import Answers from "../components/PostComponents/Answers";
 import AnswerPortal from "../components/Portal/AnswerPortal";
 import { useGetPostByIdQuery } from "../redux/services/quoraApi";
 import { api, setLike, setDislike } from "../api/axios";

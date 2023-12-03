@@ -165,13 +165,13 @@ const Login = () => {
               </div>
             )}
 
-            <div className="flex justify-between items-center pb-6">
-              <div
+            <div className="flex justify-end items-center pb-6">
+              {/* <div
                 onClick={changeUpdatePassword}
                 className="text-xs text-[#939598] cursor-pointer hover:underline"
               >
                 {updatePassword ? "Go Back" : "Update Password"}
-              </div>
+              </div> */}
               <SubmitButton
                 text={updatePassword ? "Update Password" : "Login"}
               />

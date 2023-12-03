@@ -2,7 +2,6 @@ import usePosts from "../hooks/usePosts";
 import { useState } from "react";
 import { setLike, setDislike } from "../api/axios";
 import { toast } from "react-toastify";
-
 import { MdClose } from "react-icons/md";
 import { LiaPenSquareSolid } from "react-icons/lia";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";

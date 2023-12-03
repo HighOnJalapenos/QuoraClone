@@ -1,12 +1,15 @@
 import { GrClose } from "react-icons/gr";
 import { useRef, useState } from "react";
 import { api } from "../../api/axios";
-
 import AddQuestion from "./AddComponents/AddQuestion";
 import AddPost from "./AddComponents/AddPost";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const QuestionModal = ({ onClose, notify }) => {
   const ref = useRef();
+  const id = useSelector((state) => state.auth.user.userId);
+  const navigate = useNavigate();
   const initialFormData = {
     title: "",
     content: "",
@@ -43,21 +46,20 @@ const QuestionModal = ({ onClose, notify }) => {
   };
 
   const handleAddPost = (e) => {
+    document.documentElement.style.overflow = "";
     const data = new FormData();
     data.append("title", formData.title);
     data.append("content", formData.content);
     data.append("images", formData.images);
-    console.log(formData);
     e.preventDefault();
     api
       .post("/post", data)
       .then((response) => {
         notify("Post has been added");
         onClose();
+        navigate(`/user/${id}`);
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   return (

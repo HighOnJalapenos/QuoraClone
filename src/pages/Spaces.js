@@ -1,9 +1,14 @@
-import SmallSpaces from "../components/SmallSpaces";
+import SmallSpaces from "../components/SpaceComponents/SmallSpaces";
 import axios from "axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Fragment } from "react";
+import { Fragment, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import AddSpaceModal from "../components/Portal/AddSpaceModal";
 
 export default function Spaces() {
+  const scrollRef = useRef();
+  const [showSpaceModal, setShowSpaceModal] = useState(false);
+  const portal = document.getElementById("portal");
   const api = axios.create({
     baseURL: "https://academics.newtonschool.co/api/v1/quora",
     headers: {
@@ -14,6 +19,14 @@ export default function Spaces() {
   const fetchProjects = async ({ pageParam }) => {
     const { data } = await api.get(`/channel?page=${pageParam}&limit=12`);
     return data;
+  };
+
+  const openSpaceModal = () => {
+    setShowSpaceModal(true);
+  };
+
+  const closeSpaceModal = () => {
+    setShowSpaceModal(false);
   };
 
   const {
@@ -29,15 +42,12 @@ export default function Spaces() {
     queryFn: fetchProjects,
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages, lastPageParam) => {
-      console.log(lastPage);
       if (lastPage.data.length < 12) {
         return undefined;
       }
       return lastPageParam + 1;
     },
   });
-
-  console.log(hasNextPage);
 
   return (
     <div className="navSmall:mt-20 mt-28">
@@ -49,17 +59,27 @@ export default function Spaces() {
               Follow Spaces to explore your interests on Quora.
             </div>
             <div className="flex gap-2">
-              <button className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition">
+              <button
+                onClick={openSpaceModal}
+                className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition"
+              >
                 Create Spaces
               </button>
-              <button className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition">
+              <button
+                onClick={() => {
+                  scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition"
+              >
                 Discover Spaces
               </button>
             </div>
           </div>
 
           <div className="py-6 navSmall:px-0 px-4">
-            <div className="text-xl font-bold">Discover Spaces</div>
+            <div ref={scrollRef} className="text-xl font-bold">
+              Discover Spaces
+            </div>
             <div className="mt-2 mb-4">
               <div className="py-2 text-sm font-medium">
                 Spaces you might like
@@ -99,6 +119,8 @@ export default function Spaces() {
           </div>
         </div>
       </div>
+      {showSpaceModal &&
+        createPortal(<AddSpaceModal onClose={closeSpaceModal} />, portal)}
     </div>
   );
 }

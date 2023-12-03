@@ -1,10 +1,10 @@
 import { BiUserCircle } from "react-icons/bi";
 
 import Comments from "./Comments";
-import { useGetUserByIdQuery } from "../redux/services/quoraApi";
+import { useGetUserByIdQuery } from "../../redux/services/quoraApi";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { api } from "../api/axios";
+import { api } from "../../api/axios";
 
 const FirstComment = ({ comment, setRefetchComment, notify }) => {
   const [userComment, setUserComment] = useState(false);

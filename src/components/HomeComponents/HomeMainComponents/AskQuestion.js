@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { toast } from "react-toastify";
-import QuestionModal from "./Portal/QuestionModal";
+import QuestionModal from "../../Portal/QuestionModal";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function AskQuestion() {
+  const navigate = useNavigate();
   const [showQuestionModal, setShowQuestionModal] = useState(false);
   const portal = document.getElementById("portal");
 
@@ -56,7 +58,10 @@ export default function AskQuestion() {
           Ask
         </button>
         <div className="border-r border-[#dee0e1] mx-1 h-4"></div>
-        <button className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full">
+        <button
+          onClick={() => navigate("/answer")}
+          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full"
+        >
           Answer
         </button>
         <div className="border-r border-[#dee0e1] mx-1 h-4"></div>

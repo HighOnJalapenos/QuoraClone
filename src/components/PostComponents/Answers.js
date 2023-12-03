@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useGetUserByIdQuery } from "../redux/services/quoraApi";
+import { useGetUserByIdQuery } from "../../redux/services/quoraApi";
 import { useNavigate } from "react-router-dom";
 
 import { BiUserCircle } from "react-icons/bi";
-import ThreeDotsLoading from "../assets/icons/ThreeDotsLoading";
+import ThreeDotsLoading from "../../assets/icons/ThreeDotsLoading";
 
-import FirstComment from "./FirstComment";
-import { api } from "../api/axios";
+import FirstComment from "../CommentComponents/FirstComment";
+import { api } from "../../api/axios";
 import { toast } from "react-toastify";
 
 export default function Answers({ singleAnswer, setRefetchComment }) {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { api, setLike, setDislike } from "../api/axios";
+import { api, setLike, setDislike } from "../../api/axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { FaRegComment } from "react-icons/fa";
-import ThreeDotsLoading from "../assets/icons/ThreeDotsLoading";
-import FirstComment from "./FirstComment";
+import ThreeDotsLoading from "../../assets/icons/ThreeDotsLoading";
+import FirstComment from "../CommentComponents/FirstComment";
 import { Link } from "react-router-dom";
 
 export default function UserPost({ post, image, isPost, setRefetchPosts }) {

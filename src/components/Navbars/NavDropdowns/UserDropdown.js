@@ -3,13 +3,13 @@ import { HiOutlineSpeakerphone } from "react-icons/hi";
 import { LuDollarSign } from "react-icons/lu";
 import { LiaChartBarSolid } from "react-icons/lia";
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/Slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../redux/Slices/authSlice";
 import { Link } from "react-router-dom";
 
 const UserDropdown = () => {
   const dispatch = useDispatch();
-  const { name, userId } = JSON.parse(localStorage.getItem("user"));
+  const { name, userId } = useSelector((state) => state.auth.user);
 
   const logOut = () => {
     dispatch(logout());
@@ -33,33 +33,45 @@ const UserDropdown = () => {
         </Link>
 
         <div className="py-1 border-b">
-          <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
-            <span className="pr-2">
-              <RiMessage2Line size={24} />
-            </span>
-            <span className="text-sm">Messages</span>
-          </div>
+          <Link to={"/messages"}>
+            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+              <span className="pr-2">
+                <RiMessage2Line size={24} />
+              </span>
+              <span className="text-sm">Messages</span>
+            </div>
+          </Link>
 
-          <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
-            <span className="pr-2">
-              <HiOutlineSpeakerphone size={24} />
-            </span>
-            <span className="text-sm">Create Ad</span>
-          </div>
+          <a
+            href="https://business.quora.com/"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+              <span className="pr-2">
+                <HiOutlineSpeakerphone size={24} />
+              </span>
+              <span className="text-sm">Create Ad</span>
+            </div>
+          </a>
 
-          <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
-            <span className="pr-2">
-              <LuDollarSign size={24} />
-            </span>
-            <span className="text-sm">Monetization</span>
-          </div>
+          <Link to={"comingsoon"}>
+            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+              <span className="pr-2">
+                <LuDollarSign size={24} />
+              </span>
+              <span className="text-sm">Monetization</span>
+            </div>
+          </Link>
 
-          <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
-            <span className="pr-2">
-              <LiaChartBarSolid size={24} />
-            </span>
-            <span className="text-sm">Your Content and Stats</span>
-          </div>
+          <Link to={"comingsoon"}>
+            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+              <span className="pr-2">
+                <LiaChartBarSolid size={24} />
+              </span>
+              <span className="text-sm">Your Content and Stats</span>
+            </div>
+          </Link>
 
           <div
             onClick={logOut}

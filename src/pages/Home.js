@@ -1,5 +1,5 @@
-import Sidebar from "../components/Sidebar";
-import MainContent from "../components/MainContent";
+import Sidebar from "../components/HomeComponents/HomeAsideComponents/Sidebar";
+import MainContent from "../components/HomeComponents/HomeMainComponents/MainContent";
 import "../css/home.css";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       <div className="navSmall:w-[588.5px] navSmall:ml-4 w-full">
         <MainContent />
       </div>
-      <div className="w-[356px] ml-4 navSmall:block hidden">Aside 2</div>
+      <div className="w-[356px] ml-4 navSmall:block hidden"></div>
     </div>
   );
 }

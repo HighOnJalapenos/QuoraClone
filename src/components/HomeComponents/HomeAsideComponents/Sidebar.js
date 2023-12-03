@@ -1,4 +1,4 @@
-import { useGetSpacesQuery } from "../redux/services/quoraApi";
+import { useGetSpacesQuery } from "../../../redux/services/quoraApi";
 import SidebarButton from "./SidebarButton";
 
 export default function Sidebar() {

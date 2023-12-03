@@ -1,5 +1,5 @@
-import { useGetPostByIdQuery } from "../redux/services/quoraApi";
-import Post from "./Post";
+import { useGetPostByIdQuery } from "../../redux/services/quoraApi";
+import Post from "../PostComponents/Post";
 
 export default function SingleSpacePost({ id, images, isPost }) {
   const { data, isLoading } = useGetPostByIdQuery(id);

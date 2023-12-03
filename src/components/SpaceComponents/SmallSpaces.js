@@ -1,4 +1,4 @@
-import DefaultImage from "../assets/facebook-profile-picture-no-pic-avatar.webp";
+import DefaultImage from "../../assets/facebook-profile-picture-no-pic-avatar.webp";
 import { useNavigate } from "react-router-dom";
 
 export default function SmallSpaces({ space }) {

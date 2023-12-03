@@ -1,6 +1,6 @@
 import { BiUserCircle } from "react-icons/bi";
 import Comments from "./Comments";
-import { useGetUserByIdQuery } from "../redux/services/quoraApi";
+import { useGetUserByIdQuery } from "../../redux/services/quoraApi";
 import { useNavigate } from "react-router-dom";
 
 const ReplyComment = ({ comment }) => {

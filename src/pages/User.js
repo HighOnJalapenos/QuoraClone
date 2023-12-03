@@ -5,12 +5,16 @@ import {
 } from "../redux/services/quoraApi";
 import DefaultImage from "../assets/facebook-profile-picture-no-pic-avatar.webp";
 import { RiUserAddLine } from "react-icons/ri";
-import UserPost from "../components/UserPost";
+import UserPost from "../components/PostComponents/UserPost";
 import { useEffect, useState } from "react";
 import { api } from "../api/axios";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/Slices/authSlice";
 
 export default function User() {
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.auth.user.userId);
   const [refetchPosts, setRefetchPosts] = useState(0);
   const [userPost, setUserPost] = useState(false);
   const { id } = useParams();
@@ -51,7 +55,7 @@ export default function User() {
 
   useEffect(() => {
     refetch();
-    if (id === "6538dbb07831f45044740153") {
+    if (id === userId) {
       setUserPost(true);
     }
   }, [refetchPosts]);
@@ -66,6 +70,10 @@ export default function User() {
       setIsFollowing(true);
       notify("Following");
     }
+  };
+
+  const logOut = () => {
+    dispatch(logout());
   };
 
   return (
@@ -130,6 +138,15 @@ export default function User() {
                           Follow
                         </button>
                       ))}
+
+                    {userPost && (
+                      <button
+                        onClick={logOut}
+                        className="text-sm h-7 min-w-7 px-2 border rounded-full bg-[#2e69ff] text-white"
+                      >
+                        Log Out
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -211,16 +228,18 @@ export default function User() {
               ) : (
                 <div>
                   {posts.length ? (
-                    posts.map((post, i) => (
-                      <UserPost
-                        userPost={userPost}
-                        setRefetchPosts={setRefetchPosts}
-                        image={post.images[0]}
-                        key={post._id}
-                        post={post}
-                        isPost={true}
-                      />
-                    ))
+                    posts
+                      .toReversed()
+                      .map((post, i) => (
+                        <UserPost
+                          userPost={userPost}
+                          setRefetchPosts={setRefetchPosts}
+                          image={post.images[0]}
+                          key={post._id}
+                          post={post}
+                          isPost={true}
+                        />
+                      ))
                   ) : (
                     <div className="text-xl text-center">No Posts</div>
                   )}
