@@ -8,6 +8,7 @@ export default function Switcher() {
     const body = window.document.body;
     root.className = currTheme;
     body.className = currTheme;
+    localStorage.theme = currTheme;
   }, [currTheme]);
 
   const toggleDarkMode = (e) => {
