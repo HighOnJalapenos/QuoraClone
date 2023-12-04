@@ -7,6 +7,7 @@ import { FaRegComment } from "react-icons/fa";
 import ThreeDotsLoading from "../../assets/icons/ThreeDotsLoading";
 import FirstComment from "../CommentComponents/FirstComment";
 import { Link } from "react-router-dom";
+import { BiUserCircle } from "react-icons/bi";
 
 export default function UserPost({ post, image, isPost, setRefetchPosts }) {
   const { content, title, _id, author } = post;
@@ -249,10 +250,10 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
               className="flex px-3 py-2 justify-between items-center bg-[#f1f2f2] dark:bg-[#202020]"
             >
               <div>
-                <img
-                  className="h-9 w-9 rounded-full"
-                  src="https://qph.cf2.quoracdn.net/main-thumb-39653657-100-hpoilfexdbvljplkmkksnufgksblgubo.jpeg"
-                  alt="profileImage"
+                <BiUserCircle
+                  size={36}
+                  color="rgb(99, 100, 102)"
+                  className="h-9 w-9 rounded-full cursor-pointer"
                 />
               </div>
               <div className="ml-2 flex-grow">

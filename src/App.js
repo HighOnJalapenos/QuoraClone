@@ -23,6 +23,16 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    const currTheme = localStorage.theme || "light";
+    const root = window.document.documentElement;
+    const body = window.document.body;
+    root.className = currTheme;
+    body.className = currTheme;
+    localStorage.theme = currTheme;
+  }, []);
+
   return (
     <>
       <ToastContainer

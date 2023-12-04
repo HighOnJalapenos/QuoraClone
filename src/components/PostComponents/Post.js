@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ImArrowUp, ImArrowDown } from "react-icons/im";
 import { FaRegComment } from "react-icons/fa";
+import { BiUserCircle } from "react-icons/bi";
 import ThreeDotsLoading from "../../assets/icons/ThreeDotsLoading";
 import DefaultPhoto from "../../assets/facebook-profile-picture-no-pic-avatar.webp";
 import FirstComment from "../CommentComponents/FirstComment";
@@ -212,10 +213,10 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
               className="flex px-3 py-2 justify-between items-center bg-[#f1f2f2] dark:bg-[#202020]"
             >
               <div>
-                <img
-                  className="h-9 w-9 rounded-full"
-                  src="https://qph.cf2.quoracdn.net/main-thumb-39653657-100-hpoilfexdbvljplkmkksnufgksblgubo.jpeg"
-                  alt="profileImage"
+                <BiUserCircle
+                  size={36}
+                  color="rgb(99, 100, 102)"
+                  className="h-9 w-9 rounded-full cursor-pointer"
                 />
               </div>
               <div className="ml-2 flex-grow">
