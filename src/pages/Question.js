@@ -14,7 +14,6 @@ export default function Question() {
   const { id } = useParams();
   const { data, isLoading: postLoading } = useGetPostByIdQuery(id);
   const [commentData, setCommentData] = useState([]);
-  const [commentLoading, setCommentLoading] = useState(false);
 
   const [portalVisibility, setPortalVisibility] = useState(false);
   const [refetchComment, setRefetchComment] = useState(0);
@@ -24,13 +23,9 @@ export default function Question() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        setCommentLoading(true);
         const response = await api.get(`/post/${id}/comments`);
         setCommentData(response?.data?.data);
-      } catch (error) {
-      } finally {
-        setCommentLoading(false);
-      }
+      } catch (error) {}
     };
 
     fetchComments();
@@ -83,7 +78,7 @@ export default function Question() {
   };
 
   return (
-    <div className="max-w-[658px] mx-auto navSmall:mt-8 mt-[72px] pt-8 lg:flex block flex-row items-stretch pb-8">
+    <div className="max-w-[658px] min-h-screen mx-auto navSmall:mt-8 mt-[72px] pt-8 lg:flex block flex-row items-stretch pb-8">
       <div className="w-full h-full">
         <div className="bg-white dark:bg-[#262626] dark:border-[#262626] border rounded px-3 pt-3">
           <div className="text-xl font-bold dark:text-[#cdcdcd]">
@@ -112,16 +107,16 @@ export default function Question() {
                 portal
               )}
 
-            <div className="flex">
+            <div className="flex gap-2">
               <button
                 onClick={like}
-                className="px-3 hover:bg-[#00000008] rounded-full flex items-center"
+                className="px-3 hover:bg-[#00000008] dark:hover:bg-[rgba(255,255,255,0.04)] dark:border-[#393839] dark:border rounded-full flex items-center"
               >
                 <ImArrowUp size={15} color="#636466" />
               </button>
               <button
                 onClick={dislike}
-                className="px-3 rounded-full hover:bg-[#00000008] flex items-center"
+                className="px-3 hover:bg-[#00000008] dark:hover:bg-[rgba(255,255,255,0.04)] dark:border-[#393839] dark:border rounded-full flex items-center"
               >
                 <ImArrowDown size={15} color="#636466" />
               </button>

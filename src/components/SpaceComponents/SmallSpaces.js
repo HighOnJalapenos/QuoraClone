@@ -7,7 +7,7 @@ export default function SmallSpaces({ space }) {
 
   return (
     <div
-      className="h-52 sm:w-44 w-32 border rounded mb-2 rounded-t-lg bg-white cursor-pointer"
+      className="h-52 sm:w-44 w-32 border rounded dark:border-[#393839] mb-2 rounded-t-lg bg-white dark:bg-[#262626] cursor-pointer"
       onClick={() => navigate(`/spaces/${_id}`)}
     >
       {image ? (
@@ -23,7 +23,7 @@ export default function SmallSpaces({ space }) {
             <img
               src={image}
               alt="profileImg"
-              className="h-10 w-10 border-2 border-white rounded relative"
+              className="h-10 w-10 border-2 border-white dark:border-[#393839] rounded relative"
             />
           </div>
         </>

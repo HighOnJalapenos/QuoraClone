@@ -6,6 +6,7 @@ import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/Slices/authSlice";
 import { Link } from "react-router-dom";
+import Switcher from "../../ThemeSwitcher/Switcher";
 
 const UserDropdown = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,10 @@ const UserDropdown = () => {
               <span className="text-sm">Your Content and Stats</span>
             </div>
           </Link>
+
+          <div className="flex">
+            <Switcher />
+          </div>
 
           <div
             onClick={logOut}

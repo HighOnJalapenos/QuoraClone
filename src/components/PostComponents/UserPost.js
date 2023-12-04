@@ -134,13 +134,13 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
 
   return (
     <>
-      <div className="mb-2 rounded border bg-white">
-        <div className="px-3 pt-3 rounded border bg-white">
+      <div className="mb-2 rounded border dark:bg-[#262626] dark:border-[#393839] dark:text-[#cdcdcd] bg-white">
+        <div className="px-3 pt-3 bg-white dark:bg-[#262626]">
           {currentlyEditing ? (
             <div className="flex flex-col">
               <input
                 onChange={(e) => setUpdatedTitle(e.target.value)}
-                className="my-1 border rounded p-2"
+                className="my-1 border rounded p-2 dark:bg-transparent dark:outline-none dark:border-[rgba(177,179,182,0.2)]"
                 type="text"
                 value={updatedTitle}
               ></input>
@@ -172,22 +172,31 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
           )}
 
           {image && (
-            <div>
+            <div className="my-2">
               <img className="bg-slate-300" src={image} alt="postImg" />
             </div>
           )}
 
           <div className="flex justify-between py-1">
             <div className="flex items-center">
-              <div className="flex border rounded-full border-[#dee0e1] bg-[#00000108] mr-2">
+              <div className="flex border rounded-full border-[#dee0e1] dark:border-[#393839] bg-[#00000108] dark:bg-[rgba(255,255,255,0.05)] mr-2">
                 <button
                   onClick={like}
-                  className="px-3 h-[30px] flex items-center border-r rounded-l-full hover:bg-[#00000008]"
+                  className="px-3 h-[30px] flex items-center border-r rounded-l-full hover:bg-[#00000008] dark:bg-[#00000108] dark:border-[#393839]"
                 >
-                  <ImArrowUp size={15} color={upVote ? "#2e69ff" : "#636466"} />
+                  <ImArrowUp
+                    size={15}
+                    className={`${
+                      upVote
+                        ? "fill-[#2e69ff]"
+                        : "dark:fill-[#b1b3b6] fill-[#636466]"
+                    }`}
+                  />
                   <div
-                    className={`transition text-sm ml-1 sm:block hidden ${
-                      upVote ? "text-[#2e69ff]" : "text-[#636466]"
+                    className={`transition text-sm ml-1 ${
+                      upVote
+                        ? "text-[#2e69ff]"
+                        : "text-[#636466] dark:text-[#b1b3b6]"
                     }`}
                   >
                     Upvote
@@ -207,7 +216,10 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
                 onClick={showComment}
                 className="px-2 flex items-center h-full hover:bg-[#00000008] rounded-full cursor-pointer"
               >
-                <FaRegComment size={20} color="#636466" />
+                <FaRegComment
+                  size={20}
+                  className="dark:fill-[rgb(177,179,182)] fill-[#636466]"
+                />
               </span>
             </div>
 
@@ -215,13 +227,13 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
               <div className="flex items-center">
                 <button
                   onClick={handleEditing}
-                  className="px-2 py-1 mr-2 text-sm border rounded-full hover:opacity-75 hover:border-slate-800 transition"
+                  className="px-2 py-1 mr-2 text-sm border rounded-full hover:opacity-75 dark:border-[rgba(177,179,182,0.2)] hover:border-slate-800 transition"
                 >
                   {currentlyEditing ? "Save" : "Edit"}
                 </button>
                 <button
                   onClick={deletePost}
-                  className="px-2 py-1 text-sm border rounded-full hover:opacity-75 hover:border-slate-800 transition"
+                  className="px-2 py-1 text-sm border rounded-full hover:opacity-75 dark:border-[rgba(177,179,182,0.2)] hover:border-slate-800 transition"
                 >
                   Delete
                 </button>
@@ -234,7 +246,7 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
           {commentVisibility && (
             <form
               onSubmit={handleAddComment}
-              className="flex px-3 py-2 justify-between items-center bg-[#f1f2f2]"
+              className="flex px-3 py-2 justify-between items-center bg-[#f1f2f2] dark:bg-[#202020]"
             >
               <div>
                 <img
@@ -248,7 +260,7 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
                   value={newComment}
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder="Add a comment..."
-                  className="px-4 py-2 w-full rounded-full"
+                  className="px-4 py-2 w-full rounded-full dark:bg-[#181818] dark:outline-none"
                 />
               </div>
               <div className="ml-1 navSmall:block hidden">
@@ -263,7 +275,7 @@ export default function UserPost({ post, image, isPost, setRefetchPosts }) {
           )}
 
           {isLoading && (
-            <div className="bg-[#f7f7f8] flex justify-center">
+            <div className="bg-[#f7f7f8] dark:bg-[#202020] flex justify-center">
               <ThreeDotsLoading />
             </div>
           )}

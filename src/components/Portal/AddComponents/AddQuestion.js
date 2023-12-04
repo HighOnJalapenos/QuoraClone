@@ -38,7 +38,7 @@ const AddQuestion = ({ setFormData }) => {
   return (
     <div className="overflow-y-auto h-full">
       <div className="px-4 my-4">
-        <div className="text-[#2e69ff] p-4 font-semibold bg-[#ebf0ff] rounded-lg mb-4">
+        <div className="text-[#2e69ff] dark:text-[#4894fd] p-4 font-semibold bg-[#ebf0ff] dark:bg-[#282d41] rounded-lg mb-4">
           <div>Tips on getting good answers quickly</div>
           <div className="text-sm font-normal">
             • Make sure your question has not been asked already
@@ -60,16 +60,19 @@ const AddQuestion = ({ setFormData }) => {
             fill="rgb(99, 100, 102)"
             className="ml-2"
           />
-          <button className="ml-2 h-[30px] min-w-[30px] pl-[10px] pr-[15px] border rounded-full flex items-center max-w-max">
-            <GoPeople size={18} color="rgb(99, 100, 102)" />
-            <div className="ml-1 text-sm text-[#636466] font-medium">
+          <button className="ml-2 h-[30px] min-w-[30px] pl-[10px] pr-[15px] border dark:border-[rgba(177,179,182,0.2)] rounded-full flex items-center max-w-max">
+            <GoPeople
+              size={18}
+              className="dark:fill-[#b1b3b6] fill-[rgb(99,100,102)]"
+            />
+            <div className="ml-1 text-sm text-[#636466] dark:text-[#b1b3b6] font-medium">
               Public
             </div>
           </button>
         </div>
 
         <div className="pt-2 pb-4">
-          <div className="mb-2 border-b hover:border-blue-600">
+          <div className="mb-2 border-b dark:border-[#393839] hover:border-blue-600">
             <textarea
               value={question}
               maxLength={250}
@@ -78,7 +81,7 @@ const AddQuestion = ({ setFormData }) => {
               onChange={handleInput}
               rows={1}
               placeholder='Start your question with "What", "Why", "How" etc.'
-              className="w-full focus:outline-none text-[18px] leading-[1.4] sm:h-[26px] h-[50px] min-h-[26px] resize-none break-words"
+              className="w-full focus:outline-none text-[18px] leading-[1.4] sm:h-[26px] h-[50px] min-h-[26px] resize-none break-words dark:bg-transparent"
             ></textarea>
           </div>
           {wordCountWarning && (

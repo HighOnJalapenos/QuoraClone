@@ -77,14 +77,14 @@ export default function User() {
   };
 
   return (
-    <div className="navSmall:mt-[50px] mt-[72px] bg-white">
+    <div className="navSmall:pt-[50px] min-h-screen pt-[72px] bg-white dark:bg-[rgb(24,24,24)] dark:text-[rgb(213,214,214)]">
       {isLoading ? (
         <div className="navSmall:w-[1100px] m-auto pt-8 flex animate-pulse">
-          <div className="navSmall:w-[572px] navSmall:m-0 m-4 w-full bg-gray-200 h-[600px] rounded-lg"></div>
-          <div className="w-[356px] bg-gray-200 h-[600px] ml-10 rounded-lg navSmall:block hidden"></div>
+          <div className="navSmall:w-[572px] navSmall:m-0 m-4 w-full bg-gray-200 dark:bg-[#262626] h-[600px] rounded-lg"></div>
+          <div className="w-[356px] bg-gray-200 dark:bg-[#262626] h-[600px] ml-10 rounded-lg navSmall:block hidden"></div>
         </div>
       ) : (
-        <div className="navSmall:w-[1100px] min-h-screen m-auto pt-8 px-4">
+        <div className="navSmall:w-[1100px] m-auto pt-8 px-4">
           <div className="flex navSmall:flex-row flex-col">
             <div className="navSmall:w-[572px] w-full pb-2">
               <div className="flex navSmall:items-start items-center">
@@ -103,13 +103,19 @@ export default function User() {
                       {skills?.map((skill, index) => {
                         if (index === skills.length - 1) {
                           return (
-                            <span className="text-sm font-normal" key={index}>
+                            <span
+                              className="text-sm font-normal dark:text-[#8e9092]"
+                              key={index}
+                            >
                               {skill}.
                             </span>
                           );
                         }
                         return (
-                          <span className="text-sm font-normal" key={index}>
+                          <span
+                            className="text-sm dark:text-[#8e9092] font-normal"
+                            key={index}
+                          >
                             {skill},{" "}
                           </span>
                         );
@@ -153,7 +159,7 @@ export default function User() {
             </div>
             <div className="navSmall:w-[356px] navSmall:ml-auto w-full">
               <div>
-                <div className="border-b py-2 font-medium">
+                <div className="border-b dark:border-[#393839] py-2 font-medium">
                   Credentials and Highlights
                 </div>
                 <div className="mt-2">
@@ -214,7 +220,7 @@ export default function User() {
             </div>
           </div>
 
-          <div className="navSmall:w-[572px] w-full border-t border-[#dee0e1]">
+          <div className="navSmall:w-[572px] w-full border-t border-[#dee0e1] dark:border-[#393839]">
             <div className="py-3">
               {postLoading ? (
                 <div className="animate-pulse bg-[rgb(239, 240, 240)]">

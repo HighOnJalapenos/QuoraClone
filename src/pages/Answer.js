@@ -34,7 +34,7 @@ const Answer = () => {
   };
 
   return (
-    <div className="max-w-[572px] mx-auto navSmall:mt-[50px] mt-[72px] pt-8 lg:flex block flex-row items-stretch">
+    <div className="max-w-[572px] min-h-screen mx-auto navSmall:mt-[50px] mt-[72px] pt-8 lg:flex block flex-row items-stretch">
       <div className="w-full h-full border rounded bg-white dark:bg-[#262626] dark:border-[#262626]">
         <div className="px-4 py-2 border-b dark:border-[#393839] text-xs text-[#636466] dark:text-[#b1b3b6] flex items-center">
           <div className="bg-[#b92b27] h-6 w-6 flex items-center justify-center mr-2 rounded">

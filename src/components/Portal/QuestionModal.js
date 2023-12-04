@@ -1,4 +1,4 @@
-import { GrClose } from "react-icons/gr";
+import { MdClose } from "react-icons/md";
 import { useRef, useState } from "react";
 import { api } from "../../api/axios";
 import AddQuestion from "./AddComponents/AddQuestion";
@@ -69,15 +69,18 @@ const QuestionModal = ({ onClose, notify }) => {
     >
       <form
         ref={ref}
-        className="w-[730px] max-w-[100vw] h-full sm:max-h-[70vh] sm:min-h-[400px] min-h-screen bg-white rounded-lg flex-col flex relative"
+        className="w-[730px] max-w-[100vw] h-full sm:max-h-[70vh] sm:min-h-[400px] min-h-screen bg-white dark:bg-[#181818] dark:border-[#393839] dark:border dark:text-[#cdcdcd] rounded-lg flex-col flex relative"
       >
         <div className="z-20">
           <div className="p-2 flex items-center justify-between">
             <button
               onClick={handleClose}
-              className="h-[38px] min-w-[38px] px-[6px] rounded-full hover:bg-[rgba(0,0,0,0.03)]"
+              className="h-[38px] min-w-[38px] px-[6px] rounded-full hover:bg-[rgba(0,0,0,0.03)] dark:hover:bg-[rgba(255,255,255,0.04)]"
             >
-              <GrClose className="m-auto" size={18} color="rgb(99, 100, 102)" />
+              <MdClose
+                className="m-auto dark:fill-[rgb(177,179,182)] fill-[rgb(99,100,102)]"
+                size={24}
+              />
             </button>
             <button
               type="submit"
@@ -88,7 +91,7 @@ const QuestionModal = ({ onClose, notify }) => {
             </button>
           </div>
 
-          <div className="flex border-b text-sm font-medium pt-2">
+          <div className="flex border-b dark:border-[#393839] text-sm font-medium pt-2">
             <div
               onClick={handleShowQuestion}
               className={`flex-1 text-center p-2 hover:bg-[rgba(0,0,0,0.03)] ${

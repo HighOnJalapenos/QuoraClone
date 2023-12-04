@@ -1,26 +1,25 @@
 import { useEffect, useState } from "react";
 import { useGetUserByIdQuery } from "../../redux/services/quoraApi";
 import { useNavigate } from "react-router-dom";
-
 import { BiUserCircle } from "react-icons/bi";
 import ThreeDotsLoading from "../../assets/icons/ThreeDotsLoading";
-
 import FirstComment from "../CommentComponents/FirstComment";
 import { api } from "../../api/axios";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 export default function Answers({ singleAnswer, setRefetchComment }) {
   const navigate = useNavigate();
   const { author, content, _id, children } = singleAnswer;
   const { data: authorData, isLoading } = useGetUserByIdQuery(author);
-
+  const { userId } = useSelector((state) => state.auth.user);
   const [commentVisibility, setCommentVisibility] = useState(false);
   const [userComment, setUserComment] = useState(false);
   const [editedComment, setEditedComment] = useState(content);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-    if (author === "6538dbb07831f45044740153") {
+    if (author === userId) {
       setUserComment(true);
     }
   }, []);
@@ -70,7 +69,7 @@ export default function Answers({ singleAnswer, setRefetchComment }) {
         notify("Comment deleted");
         setRefetchComment((prev) => prev + 1);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {});
   };
 
   return (
@@ -109,7 +108,7 @@ export default function Answers({ singleAnswer, setRefetchComment }) {
               <input
                 value={editedComment}
                 onChange={(e) => setEditedComment(e.target.value)}
-                className="px-4 py-2 w-full outline-none border"
+                className="px-4 py-2 w-full dark:bg-[#181818] outline-none border dark:border-[#393839]"
               />
               <button
                 type="submit"
@@ -158,7 +157,7 @@ export default function Answers({ singleAnswer, setRefetchComment }) {
 
       <div>
         {isLoading && (
-          <div className="bg-[#f7f7f8] flex justify-center">
+          <div className="bg-[#f7f7f8] dark:bg-[#262626] flex justify-center">
             <ThreeDotsLoading />
           </div>
         )}

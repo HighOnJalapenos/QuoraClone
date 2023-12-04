@@ -33,7 +33,7 @@ const AddPost = ({ setFormData }) => {
             name="title"
             placeholder="Title of the post"
             maxLength={100}
-            className="w-full focus:outline-none focus:border-blue-600 border p-2 rounded text-base font-medium h-8"
+            className="w-full focus:outline-none dark:border-[rgba(177,179,182,0.2)] focus:border-blue-600 border p-2 rounded text-base font-medium h-8 dark:bg-transparent"
           ></input>
         </div>
         <div className="mb-2 h-full">
@@ -41,7 +41,7 @@ const AddPost = ({ setFormData }) => {
             name="content"
             onChange={handleInput}
             placeholder="Content of the post"
-            className="w-full focus:outline-none border focus:border-blue-600 rounded h-full resize-none p-2 break-words text-sm"
+            className="w-full focus:outline-none dark:border-[rgba(177,179,182,0.2)] border focus:border-blue-600 rounded h-full resize-none p-2 break-words text-sm dark:bg-transparent"
           ></textarea>
         </div>
       </div>
@@ -49,7 +49,7 @@ const AddPost = ({ setFormData }) => {
       <div>
         <input
           onChange={handleImage}
-          className="block w-full text-sm text-gray-900 border border-gray-300 rounded bg-gray-50 focus:outline-none cursor-pointer"
+          className="block w-full text-sm text-gray-900 dark:border-[rgba(177,179,182,0.2)] border border-gray-300 rounded bg-gray-50 focus:outline-none dark:bg-transparent cursor-pointer"
           name="images"
           type="file"
         />

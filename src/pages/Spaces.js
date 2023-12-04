@@ -50,10 +50,10 @@ export default function Spaces() {
   });
 
   return (
-    <div className="navSmall:mt-20 mt-28">
-      <div className="navSmall:max-w-[1100px] w-full h-screen mx-auto flex justify-between">
+    <div className="navSmall:pt-20 pt-28">
+      <div className="navSmall:max-w-[1100px] w-full min-h-screen mx-auto flex justify-between dark:text-[#cdcdcd]">
         <div className="navSmall:w-[750px] w-full">
-          <div className="p-4 bg-white sm:bg-[url('https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.tribes.tribe_welcome_banner_full.png-26-64d500fd69494b66.png')] bg-right-bottom bg-contain bg-no-repeat border rounded">
+          <div className="p-4 bg-white dark:bg-[#262626] sm:bg-[url('https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.tribes.tribe_welcome_banner_full.png-26-64d500fd69494b66.png')] bg-right-bottom bg-contain bg-no-repeat border rounded dark:border-[#262626]">
             <div className="text-lg font-medium mb-1">Welcome to spaces!</div>
             <div className="text-[#636466] text-xs mb-4">
               Follow Spaces to explore your interests on Quora.
@@ -61,7 +61,7 @@ export default function Spaces() {
             <div className="flex gap-2">
               <button
                 onClick={openSpaceModal}
-                className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition"
+                className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] dark:hover:bg-[#282d41] dark:text-[rgb(72,148,253)] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition dark:bg-transparent dark:border-[rgb(72,148,253)]"
               >
                 Create Spaces
               </button>
@@ -69,7 +69,7 @@ export default function Spaces() {
                 onClick={() => {
                   scrollRef.current?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition"
+                className="h-[30px] pl-4 pr-3 text-xs font-medium text-[#2e69ff] dark:text-[rgb(72,148,253)] dark:hover:bg-[#282d41] border border-[#2e69ff] rounded-full bg-white hover:bg-[#ebf0ff] transition dark:bg-transparent dark:border-[rgb(72,148,253)]"
               >
                 Discover Spaces
               </button>
@@ -94,7 +94,7 @@ export default function Spaces() {
                 </Fragment>
               ))}
             </div>
-            <div className="rounded flex justify-center hover:text-[#282829] text-[#636466] hover:bg-[rgba(0,0,0,0.03)] transition">
+            <div className="rounded flex justify-center hover:text-[#282829] text-[#636466] dark:text-[#b1b3b6] hover:bg-[rgba(0,0,0,0.03)] dark:hover:bg-[rgba(255,255,255,0.04)] dark:bg-transparent transition">
               <button
                 disabled={!hasNextPage || isFetchingNextPage}
                 onClick={() => fetchNextPage()}
@@ -110,8 +110,8 @@ export default function Spaces() {
           </div>
         </div>
 
-        <div className="navSmall:flex flex-col h-36 hidden w-[300px] bg-white border rounded">
-          <div className="border-b py-2 px-4 font-medium text-[rgba(40,40,41,0.71)]">
+        <div className="navSmall:flex flex-col h-36 hidden w-[300px] bg-white dark:bg-[#262626] border rounded dark:border-[#262626]">
+          <div className="border-b dark:border-[#393839] py-2 px-4 font-medium text-[rgba(40,40,41,0.71)] dark:text-[#d5d6d6]">
             Pending Invites
           </div>
           <div className="h-full flex items-center justify-center text-[#939598] text-sm">

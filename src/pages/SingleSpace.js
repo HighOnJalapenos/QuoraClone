@@ -24,7 +24,7 @@ export default function SingleSpace() {
   const spacePost = spacePostData?.data;
 
   return (
-    <div className="navSmall:mt-[51px] mt-[88px]">
+    <div className="navSmall:mt-[51px] mt-[88px] min-h-screen">
       <div className="bg-gradient-to-b from-slate-400 to-black">
         <div className="navSmall:w-[1072px] w-full m-auto text-white">
           <div className="rounded-b">
@@ -49,8 +49,8 @@ export default function SingleSpace() {
 
       <div className="navSmall:w-[1072px] w-full m-auto flex justify-between px-2 sm:px-6">
         <div className="sm:w-[658px] w-full">
-          <div className="border-b mb-2">
-            <div className="px-4 py-3 w-fit text-sm border-b-[3px] border-[#195faa] cursor-pointer">
+          <div className="border-b dark:border-[rgba(255,255,255,.06)] mb-2">
+            <div className="px-4 py-3 w-fit text-sm border-b-[3px] border-[#195faa] cursor-pointer dark:text-[#d5d6d6]">
               Posts ({spacePost ? spacePost.length : 0})
             </div>
           </div>
