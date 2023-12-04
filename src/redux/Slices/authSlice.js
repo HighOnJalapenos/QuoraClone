@@ -14,8 +14,8 @@ export const register = createAsyncThunk(
         appType
       );
       const { token } = response.data.data;
-      const { name, _id } = response.data.data.data.user;
-      return { name: name, userId: _id, token: token };
+      const { UserName, _id } = response.data.data.data.user;
+      return { name: UserName, userId: _id, token: token };
     } catch (error) {
       const message =
         (error.response &&

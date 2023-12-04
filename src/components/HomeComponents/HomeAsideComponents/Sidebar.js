@@ -18,7 +18,7 @@ export default function Sidebar() {
           );
         })}
       </div>
-      <div className="text-xs text-[#939598] overflow-visible leading-6 py-2">
+      <div className="text-xs text-[#939598] dark:text-[#8e9092] overflow-visible leading-6 py-2">
         <span> • About</span>
         <span> • Careers</span>
         <span> • Terms</span>

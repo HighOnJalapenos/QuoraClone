@@ -92,7 +92,6 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
           content: newComment,
         });
       } catch (error) {
-        console.log(error);
       } finally {
         notify("Comment added.");
         setRefetchComment((prev) => prev + 1);
@@ -103,8 +102,8 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
 
   const postBody = (
     <>
-      <div className="mb-2 rounded border bg-white">
-        <div className="px-3 pt-3 rounded border bg-white">
+      <div className="mb-2 rounded border dark:bg-[#262626] dark:border-[#262626] bg-white">
+        <div className="px-3 pt-3">
           <div className="flex flex-nowrap items-start mb-2">
             <Link to={`/user/${author._id}`}>
               <div className="h-9 w-9 mr-2 flex-shrink-0 cursor-pointer">

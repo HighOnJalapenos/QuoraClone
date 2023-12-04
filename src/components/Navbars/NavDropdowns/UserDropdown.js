@@ -18,7 +18,7 @@ const UserDropdown = () => {
   return (
     <div
       style={{ transform: "translate3d(-45%, 50px, 0)" }}
-      className="max-h-[calc(100vh-82px)] h-max border border-[#dee0e1] absolute bg-white inset-0 min-w-[260px] max-w-[260px] translate-y-[82px] text-[#282829] rounded-sm overflow-y-auto"
+      className="max-h-[calc(100vh-82px)] h-max border border-[#dee0e1] absolute bg-white inset-0 min-w-[260px] max-w-[260px] translate-y-[82px] text-[#282829] rounded-sm overflow-y-auto dark:bg-[#262626] dark:text-[#cdcdcd]"
     >
       <div>
         <Link to={`/user/${userId}`}>
@@ -27,14 +27,16 @@ const UserDropdown = () => {
               <BiUserCircle className="h-10 w-10 rounded-full mb-2 mt-4" />
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-black font-bold text-xl">{name}</span>
+              <span className="text-black dark:text-[#cdcdcd] font-bold text-xl">
+                {name}
+              </span>
             </div>
           </div>
         </Link>
 
         <div className="py-1 border-b">
           <Link to={"/messages"}>
-            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+            <div className="flex justify-start items-center hover:bg-[#00000008] dark:hover:bg-[rgba(255,255,255,0.04)] px-4 py-2 cursor-pointer">
               <span className="pr-2">
                 <RiMessage2Line size={24} />
               </span>
@@ -47,7 +49,7 @@ const UserDropdown = () => {
             rel="noreferrer"
             target="_blank"
           >
-            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer dark:hover:bg-[rgba(255,255,255,0.04)]">
               <span className="pr-2">
                 <HiOutlineSpeakerphone size={24} />
               </span>
@@ -56,7 +58,7 @@ const UserDropdown = () => {
           </a>
 
           <Link to={"comingsoon"}>
-            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer dark:hover:bg-[rgba(255,255,255,0.04)]">
               <span className="pr-2">
                 <LuDollarSign size={24} />
               </span>
@@ -65,7 +67,7 @@ const UserDropdown = () => {
           </Link>
 
           <Link to={"comingsoon"}>
-            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer">
+            <div className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer dark:hover:bg-[rgba(255,255,255,0.04)]">
               <span className="pr-2">
                 <LiaChartBarSolid size={24} />
               </span>
@@ -75,7 +77,7 @@ const UserDropdown = () => {
 
           <div
             onClick={logOut}
-            className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer"
+            className="flex justify-start items-center hover:bg-[#00000008] px-4 py-2 cursor-pointer dark:hover:bg-[rgba(255,255,255,0.04)]"
           >
             <span className="pr-2">
               <BiLogOut size={24} />

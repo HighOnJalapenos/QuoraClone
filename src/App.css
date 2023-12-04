@@ -3,6 +3,10 @@ body {
   overflow-y: scroll;
 }
 
+.dark {
+  background-color: rgb(24, 24, 24);
+}
+
 /* body::-webkit-scrollbar {
   display: none;
 } */

@@ -94,7 +94,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="hidden navSmall:block border-b bg-white border-[#dee0e1] fixed top-0 left-0 right-0 z-40">
+      <header className="hidden navSmall:block border-b dark:bg-[#262626] bg-white border-[#dee0e1] dark:border-[#262626] fixed top-0 left-0 right-0 z-40">
         <nav className="max-w-[1100px] h-[50px] m-auto flex flex-row items-center z-10">
           <div
             onClick={() => {
@@ -119,7 +119,7 @@ export default function Navbar() {
                     {isActive && (
                       <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
                     )}
-                    <div className="absolute bg-white py-2 px-4 w-fit right-[-30%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    <div className="absolute bg-white dark:bg-[#414042] dark:text-[#d5d6d6] py-2 px-4 w-fit right-[-30%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] dark:border-none transition-all ease-in delay-100 duration-100 origin-top">
                       Home
                     </div>
                   </>
@@ -135,7 +135,7 @@ export default function Navbar() {
                     {isActive && (
                       <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
                     )}
-                    <div className="absolute bg-white py-2 px-4 w-fit right-[-45%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    <div className="absolute bg-white dark:bg-[#414042] dark:text-[#d5d6d6] dark:border-none py-2 px-4 w-fit right-[-45%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
                       Following
                     </div>
                   </>
@@ -151,7 +151,7 @@ export default function Navbar() {
                     {isActive && (
                       <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
                     )}
-                    <div className="absolute bg-white py-2 px-4 w-fit right-[-36%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    <div className="absolute bg-white dark:bg-[#414042] dark:text-[#d5d6d6] dark:border-none py-2 px-4 w-fit right-[-36%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
                       Answer
                     </div>
                   </>
@@ -168,7 +168,7 @@ export default function Navbar() {
                     {isActive && (
                       <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
                     )}
-                    <div className="absolute bg-white py-2 px-4 w-fit right-[-35%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    <div className="absolute bg-white dark:bg-[#414042] dark:text-[#d5d6d6] dark:border-none py-2 px-4 w-fit right-[-35%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
                       Spaces
                     </div>
                   </>
@@ -189,7 +189,7 @@ export default function Navbar() {
                     {isActive && (
                       <div className="absolute h-[3px] left-0 right-0 bottom-0 rounded-tl-full rounded-tr-full bg-[#b92b27]"></div>
                     )}
-                    <div className="absolute bg-white py-2 px-4 w-fit right-[-60%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
+                    <div className="absolute bg-white dark:bg-[#414042] dark:text-[#d5d6d6] dark:border-none py-2 px-4 w-fit right-[-60%] text-xs rounded-full top-[calc(100%+8px)] opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-95 group-hover:translate-y-0 -translate-y-1 pointer-events-none border border-[#dee0e1] transition-all ease-in delay-100 duration-100 origin-top">
                       Notification
                     </div>
                   </>
@@ -199,14 +199,17 @@ export default function Navbar() {
           </ul>
           <div className={`flex w-full`}>
             <form onSubmit={search} className="mx-3 flex-auto">
-              <div className="border border-[#dee0e1] px-2 py-1 rounded-md flex focus-within:border-[#2e69ff]">
+              <div className="border border-[#dee0e1] px-2 py-1 rounded-md flex focus-within:border-[#2e69ff] dark:bg-[#181818] dark:border-[#393839] focus-within:dark:border-[#2e69ff]">
                 <button className="mr-1">
-                  <CiSearch size={16} />
+                  <CiSearch
+                    size={16}
+                    className="dark:fill-[rgb(142,144,146)]"
+                  />
                 </button>
                 <input
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="h-full w-full text-sm font-light min-h-[26px] focus:outline-none"
+                  className="h-full w-full text-sm font-light min-h-[26px] focus:outline-none dark:bg-[#181818] dark:text-[rgb(213,214,214)]"
                   placeholder="Search Quora"
                   type="text"
                   onFocus={(e) => {
@@ -228,7 +231,7 @@ export default function Navbar() {
             >
               <button
                 onClick={() => navigate("/quoraplus")}
-                className="text-sm text-[#636466] hover:bg-[#6364661a] rounded-full border border-[#dee0e1] h-[30px] px-4 min-w-[30px]"
+                className="text-sm text-[#636466] hover:bg-[#6364661a] rounded-full border border-[#dee0e1] h-[30px] px-4 min-w-[30px] dark:border-[#393839] dark:text-[rgb(213,214,214)]"
               >
                 Try Quora+
               </button>

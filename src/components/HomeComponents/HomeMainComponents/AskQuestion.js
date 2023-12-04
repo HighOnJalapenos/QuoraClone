@@ -33,14 +33,14 @@ export default function AskQuestion() {
   };
 
   return (
-    <div className="mb-2 border border-[#dee0e1] bg-white rounded">
+    <div className="mb-2 border border-[#dee0e1] dark:border-[#262626] dark:hover:border-[#414142] bg-white dark:bg-[#262626] rounded">
       <div className="pt-3 px-3 flex items-center">
-        <BiUserCircle size={32} />
+        <BiUserCircle size={32} className="dark:fill-[#8e9092]" />
         <div
           onClick={openQuestionModal}
-          className="ml-2 flex-grow flex items-center h-[32px] border rounded-full border-[#dee0e1] bg-[#f7f7f8] hover:bg-[#f1f2f2] cursor-pointer"
+          className="ml-2 flex-grow flex items-center h-[32px] border rounded-full border-[#dee0e1] bg-[#f7f7f8] hover:bg-[#f1f2f2] dark:bg-[#202020] dark:border-[#393839] cursor-pointer"
         >
-          <div className="ml-2 text-sm text-[#636466]">
+          <div className="ml-2 text-sm text-[#636466] dark:text-[#8e9092]">
             What do you want to ask or share
           </div>
         </div>

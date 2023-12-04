@@ -123,7 +123,7 @@ const SmallNavbar = () => {
           {({ isActive }) => (
             <>
               <div className="px-2 h-full border-r flex items-center justify-center flex-1">
-                {isActive ? ActiveNotification : <InactiveNotification />}
+                {isActive ? <ActiveNotification /> : <InactiveNotification />}
               </div>
             </>
           )}
