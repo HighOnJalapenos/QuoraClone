@@ -61,7 +61,7 @@ const FirstComment = ({ comment, setRefetchComment, notify }) => {
   return (
     <div
       key={comment._id}
-      className="sm:px-3 px-1 py-2 border-b last:border-b-0"
+      className="sm:px-3 px-1 py-2 border-b last:border-b-0 dark:text-[#d5d6d6] dark:border-[#393839]"
     >
       {isEditing ? (
         <form>

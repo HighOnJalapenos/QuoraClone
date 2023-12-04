@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const register = (name, email, password, appType) => {
-  console.log(name, email, password, appType);
   return axios
     .post(
       "https://academics.newtonschool.co/api/v1/user/signup",
@@ -18,6 +17,7 @@ const register = (name, email, password, appType) => {
       }
     )
     .then((response) => {
+      console.log(response);
       if (response.data.token) {
         localStorage.setItem(
           "user",

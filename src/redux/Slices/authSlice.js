@@ -13,8 +13,8 @@ export const register = createAsyncThunk(
         password,
         appType
       );
-      const { token } = response.data.data;
-      const { UserName, _id } = response.data.data.data.user;
+      const token = response.token;
+      const { name: UserName, _id } = response.data.user;
       return { name: UserName, userId: _id, token: token };
     } catch (error) {
       const message =
@@ -62,7 +62,7 @@ const authSlice = createSlice({
   extraReducers: {
     [register.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
-      state.user = action.payload.user;
+      state.user = action.payload;
     },
     [register.rejected]: (state, action) => {
       state.isLoggedIn = false;

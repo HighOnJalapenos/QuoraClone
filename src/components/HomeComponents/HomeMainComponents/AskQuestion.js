@@ -50,24 +50,24 @@ export default function AskQuestion() {
             portal
           )}
       </div>
-      <div className="flex flex-row my-1 items-center text-[#636466]">
+      <div className="flex flex-row my-1 items-center text-[#636466] dark:text-[#b1b3b6]">
         <button
           onClick={openQuestionModal}
-          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full"
+          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] dark:hover:bg-[rgba(255,255,255,0.04)] rounded-full"
         >
           Ask
         </button>
-        <div className="border-r border-[#dee0e1] mx-1 h-4"></div>
+        <div className="border-r border-[#dee0e1] dark:border-[#393839] mx-1 h-4"></div>
         <button
           onClick={() => navigate("/answer")}
-          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full"
+          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] dark:hover:bg-[rgba(255,255,255,0.04)] rounded-full"
         >
           Answer
         </button>
-        <div className="border-r border-[#dee0e1] mx-1 h-4"></div>
+        <div className="border-r border-[#dee0e1] dark:border-[#393839] mx-1 h-4"></div>
         <button
           onClick={openQuestionModal}
-          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] rounded-full"
+          className="flex-1 flex items-center justify-center h-[30px] text-sm cursor-pointer hover:bg-[#00000008] dark:hover:bg-[rgba(255,255,255,0.04)] rounded-full"
         >
           Post
         </button>

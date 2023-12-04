@@ -26,10 +26,8 @@ export default function Question() {
       try {
         setCommentLoading(true);
         const response = await api.get(`/post/${id}/comments`);
-        console.log(response);
         setCommentData(response?.data?.data);
       } catch (error) {
-        console.log(error);
       } finally {
         setCommentLoading(false);
       }
@@ -87,14 +85,19 @@ export default function Question() {
   return (
     <div className="max-w-[658px] mx-auto navSmall:mt-8 mt-[72px] pt-8 lg:flex block flex-row items-stretch pb-8">
       <div className="w-full h-full">
-        <div className="bg-white border rounded px-3 pt-3">
-          <div className="text-xl font-bold">{data?.data?.title}</div>
+        <div className="bg-white dark:bg-[#262626] dark:border-[#262626] border rounded px-3 pt-3">
+          <div className="text-xl font-bold dark:text-[#cdcdcd]">
+            {data?.data?.title}
+          </div>
           <div className="py-1 flex justify-between">
             <button
               onClick={openAnswerPortal}
-              className="h-10 border rounded-full px-5 text-[#636466] text-sm hover:bg-[rgba(0,0,0,0.03)] transition flex items-center gap-1"
+              className="h-10 border rounded-full dark:border-[rgba(177,179,182,0.2)] px-5 text-[#636466] dark:text-[#b1b3b6] text-sm hover:bg-[rgba(0,0,0,0.03)] transition flex items-center gap-1"
             >
-              <LiaPenSquareSolid size={30} color="#636466" />
+              <LiaPenSquareSolid
+                size={30}
+                className="dark:fill-[#b1b3b6] fill-[#636466]"
+              />
               Answer
             </button>
             {portalVisibility &&

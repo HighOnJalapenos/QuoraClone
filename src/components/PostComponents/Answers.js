@@ -74,7 +74,7 @@ export default function Answers({ singleAnswer, setRefetchComment }) {
   };
 
   return (
-    <div className="my-2 rounded border bg-white">
+    <div className="my-2 rounded border bg-white dark:bg-[#262626] dark:border-[#262626] dark:text-[#d5d6d6]">
       <div className="px-3 pt-3">
         <div className="flex flex-nowrap mb-2 items-center">
           <div
@@ -143,12 +143,12 @@ export default function Answers({ singleAnswer, setRefetchComment }) {
         )}
 
         <div className="py-1">
-          <div className="flex items-center border rounded-full">
+          <div className="flex items-center border rounded-full dark:border-[#393839]">
             <div
               onClick={showComment}
-              className="px-2 flex items-center h-7 w-full hover:bg-[#00000008] cursor-pointer rounded-full"
+              className="px-2 flex items-center h-7 w-full hover:bg-[#00000008] dark:hover:bg-[rgba(255,255,255,0.04)] dark:bg-[rgba(255,255,255,0.05)] cursor-pointer rounded-full"
             >
-              <span className="text-[#636466] text-xs font-bold m-auto">
+              <span className="text-[#636466] dark:text-[#b1b3b6] text-xs font-bold m-auto">
                 {children.length} Comments
               </span>
             </div>

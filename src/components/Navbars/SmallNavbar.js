@@ -42,8 +42,8 @@ const SmallNavbar = () => {
   };
 
   return (
-    <header className="block navSmall:hidden border-b bg-white border-[#dee0e1] fixed top-0 left-0 right-0 z-40">
-      <div className="h-11 bg-[#b92b27]">
+    <header className="block navSmall:hidden border-b bg-white border-[#dee0e1] dark:border-[#393839] fixed top-0 left-0 right-0 z-40">
+      <div className="h-11 bg-[#b92b27] dark:bg-[#f52936] dark:border-b-[#393839] dark:border-b">
         {showInputbox ? (
           <div className="h-full">
             <form onSubmit={search} className="h-full py-2 flex">
@@ -72,17 +72,17 @@ const SmallNavbar = () => {
               <div className="text-sm text-white ml-1 font-medium">Search</div>
             </button>
             <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
-              <Logo width={77.287} height={44} fill={"rgb(255, 255, 255)"} />
+              <Logo width={77.287} height={44} fill={"rgb(255,255,255)"} />
             </div>
           </div>
         )}
       </div>
 
-      <div className="h-11 bg-[#f7f7f8] flex">
+      <div className="h-11 bg-[#f7f7f8] dark:bg-[#202020] flex">
         <NavLink className="flex-1" to="/">
           {({ isActive }) => (
             <>
-              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+              <div className="px-2 h-full border-r dark:border-[#393839] flex items-center justify-center flex-1">
                 {isActive ? <ActiveHome /> : <InactiveHome />}
               </div>
             </>
@@ -92,7 +92,7 @@ const SmallNavbar = () => {
         <NavLink className="flex-1" to="/following">
           {({ isActive }) => (
             <>
-              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+              <div className="px-2 h-full border-r dark:border-[#393839] flex items-center justify-center flex-1">
                 {isActive ? <ActiveFollowing /> : <InactiveFollowing />}
               </div>
             </>
@@ -102,7 +102,7 @@ const SmallNavbar = () => {
         <NavLink className="flex-1" to="/answer">
           {({ isActive }) => (
             <>
-              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+              <div className="px-2 h-full border-r dark:border-[#393839] flex items-center justify-center flex-1">
                 {isActive ? <ActiveAnswer /> : <InactiveAnswer />}
               </div>
             </>
@@ -112,7 +112,7 @@ const SmallNavbar = () => {
         <NavLink className="flex-1" to="/spaces">
           {({ isActive }) => (
             <>
-              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+              <div className="px-2 h-full border-r dark:border-[#393839] flex items-center justify-center flex-1">
                 {isActive ? <ActiveSpaces /> : <InactiveSpaces />}
               </div>
             </>
@@ -122,7 +122,7 @@ const SmallNavbar = () => {
         <NavLink className="flex-1" to="/notification">
           {({ isActive }) => (
             <>
-              <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+              <div className="px-2 h-full border-r dark:border-[#393839] flex items-center justify-center flex-1">
                 {isActive ? <ActiveNotification /> : <InactiveNotification />}
               </div>
             </>
@@ -130,7 +130,7 @@ const SmallNavbar = () => {
         </NavLink>
 
         <NavLink className="flex-1" to={`/user/${id}`}>
-          <div className="px-2 h-full border-r flex items-center justify-center flex-1">
+          <div className="px-2 h-full border-r dark:border-[#393839] flex items-center justify-center flex-1">
             <BiUserCircle size={24} color="rgb(99,100,102)" />
           </div>
         </NavLink>
