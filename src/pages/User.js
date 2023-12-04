@@ -77,7 +77,7 @@ export default function User() {
   };
 
   return (
-    <div className="navSmall:pt-[50px] min-h-screen pt-[72px] bg-white dark:bg-[rgb(24,24,24)] dark:text-[rgb(213,214,214)]">
+    <div className="navSmall:pt-[50px] w-full min-h-screen pt-[72px] bg-white dark:bg-[rgb(24,24,24)] dark:text-[rgb(213,214,214)]">
       {isLoading ? (
         <div className="navSmall:w-[1100px] m-auto pt-8 flex animate-pulse">
           <div className="navSmall:w-[572px] navSmall:m-0 m-4 w-full bg-gray-200 dark:bg-[#262626] h-[600px] rounded-lg"></div>

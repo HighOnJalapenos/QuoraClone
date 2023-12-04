@@ -69,7 +69,7 @@ const FirstComment = ({ comment, setRefetchComment, notify }) => {
             <input
               value={editedComment}
               onChange={(e) => setEditedComment(e.target.value)}
-              className="px-4 py-2 w-full rounded-full outline-none border ml-2"
+              className="px-4 py-2 w-full rounded-full outline-none border ml-2 dark:bg-transparent"
             />
             <button
               type="submit"
