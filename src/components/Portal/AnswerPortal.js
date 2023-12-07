@@ -7,9 +7,12 @@ export default function AnswerPortal({
   newComment,
   setNewComment,
   handleAddComment,
+  setSubmitButtonDisabled,
+  submitButtonDisabled,
 }) {
   const handlePost = (e) => {
     e.preventDefault();
+    setSubmitButtonDisabled(true);
     handleAddComment(e);
     onClose();
   };
@@ -28,6 +31,7 @@ export default function AnswerPortal({
           </button>
           <button
             type="submit"
+            disabled={submitButtonDisabled}
             className="h-9 min-w-[36px] bg-[#2e69ff] hover:bg-[rgb(26,90,255)] px-5 rounded-full text-white text-sm"
           >
             Post

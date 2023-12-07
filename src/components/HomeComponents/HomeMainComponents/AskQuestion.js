@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function AskQuestion() {
   const navigate = useNavigate();
   const [showQuestionModal, setShowQuestionModal] = useState(false);
+  const [submitButtonaDisabled, setSubmitButtonDisabled] = useState(false);
   const portal = document.getElementById("portal");
 
   const notify = (message) => {
@@ -46,7 +47,12 @@ export default function AskQuestion() {
         </div>
         {showQuestionModal &&
           createPortal(
-            <QuestionModal notify={notify} onClose={closeQuestionModal} />,
+            <QuestionModal
+              notify={notify}
+              onClose={closeQuestionModal}
+              submitButtonaDisabled={submitButtonaDisabled}
+              setSubmitButtonDisabled={setSubmitButtonDisabled}
+            />,
             portal
           )}
       </div>

@@ -10,6 +10,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { login } from "../redux/Slices/authSlice";
 
 const Login = () => {
+  const [loginButtonDisabled, setLoginButtonDisabled] = useState(false);
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -66,6 +67,7 @@ const Login = () => {
 
   const submitFormData = (e) => {
     e.preventDefault();
+    setLoginButtonDisabled(true);
     dispatch(login(formData))
       .unwrap()
       .then(() => {
@@ -74,6 +76,9 @@ const Login = () => {
       .catch((error) => {
         notify(error);
         setFormData(data);
+      })
+      .finally(() => {
+        setLoginButtonDisabled(false);
       });
   };
 
@@ -173,6 +178,7 @@ const Login = () => {
                 {updatePassword ? "Go Back" : "Update Password"}
               </div> */}
               <SubmitButton
+                buttonDisabled={loginButtonDisabled}
                 text={updatePassword ? "Update Password" : "Login"}
               />
             </div>

@@ -14,7 +14,7 @@ export default function Question() {
   const { id } = useParams();
   const { data, isLoading: postLoading } = useGetPostByIdQuery(id);
   const [commentData, setCommentData] = useState([]);
-
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
   const [portalVisibility, setPortalVisibility] = useState(false);
   const [refetchComment, setRefetchComment] = useState(0);
   const [newComment, setNewComment] = useState("");
@@ -50,6 +50,7 @@ export default function Question() {
         console.log(error);
       } finally {
         notify("Comment added");
+        setSubmitButtonDisabled(false);
         setRefetchComment((prev) => prev + 1);
         setNewComment("");
       }
@@ -103,6 +104,8 @@ export default function Question() {
                   handleAddComment={handleAddComment}
                   title={data?.data?.title}
                   onClose={hideAnswerPortal}
+                  setSubmitButtonDisabled={setSubmitButtonDisabled}
+                  submitButtonDisabled={submitButtonDisabled}
                 />,
                 portal
               )}

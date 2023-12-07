@@ -10,6 +10,7 @@ import { register } from "../redux/Slices/authSlice";
 import { toast } from "react-toastify";
 
 export default function SignUp() {
+  const [signupButtonDisabled, setSignUpButtonDisabled] = useState(false);
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -52,6 +53,7 @@ export default function SignUp() {
 
   const submitFormData = (e) => {
     e.preventDefault();
+    setSignUpButtonDisabled(true);
     dispatch(register(formData))
       .unwrap()
       .then(() => {
@@ -60,6 +62,9 @@ export default function SignUp() {
       .catch((error) => {
         notify(error);
         setFormData(data);
+      })
+      .finally(() => {
+        setSignUpButtonDisabled(false);
       });
   };
 
@@ -131,7 +136,10 @@ export default function SignUp() {
             </div>
 
             <div className="flex justify-end pb-6">
-              <SubmitButton text={"Sign up"} />
+              <SubmitButton
+                buttonDisabled={signupButtonDisabled}
+                text={"Sign up"}
+              />
             </div>
           </form>
         </div>

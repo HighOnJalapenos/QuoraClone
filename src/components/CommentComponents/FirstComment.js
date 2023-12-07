@@ -86,14 +86,14 @@ const FirstComment = ({ comment, setRefetchComment, notify }) => {
             {profileImage ? (
               <img
                 onClick={goToUser}
-                className="h-9 w-9 rounded-full cursor-pointer"
+                className="h-9 w-9 rounded-full cursor-pointer shrink-0"
                 src={profileImage}
                 alt="profileImage"
               />
             ) : (
               <BiUserCircle
                 onClick={goToUser}
-                className="cursor-pointer"
+                className="cursor-pointer shrink-0"
                 size={34}
                 color="rgb(99, 100, 102)"
               />
@@ -112,7 +112,7 @@ const FirstComment = ({ comment, setRefetchComment, notify }) => {
           </div>
 
           {userComment && (
-            <div className="sm:ml-auto text-xs font-light">
+            <div className="sm:ml-auto text-xs font-light shrink-0">
               <button
                 onClick={() => setIsEditing(true)}
                 className="px-2 py-1 mr-2 border rounded-full hover:opacity-75 hover:border-slate-800 transition"

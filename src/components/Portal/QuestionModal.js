@@ -6,7 +6,12 @@ import AddPost from "./AddComponents/AddPost";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const QuestionModal = ({ onClose, notify }) => {
+const QuestionModal = ({
+  onClose,
+  notify,
+  submitButtonaDisabled,
+  setSubmitButtonDisabled,
+}) => {
   const ref = useRef();
   const id = useSelector((state) => state.auth.user.userId);
   const navigate = useNavigate();
@@ -46,6 +51,7 @@ const QuestionModal = ({ onClose, notify }) => {
   };
 
   const handleAddPost = (e) => {
+    setSubmitButtonDisabled(true);
     document.documentElement.style.overflow = "";
     const data = new FormData();
     data.append("title", formData.title);
@@ -56,6 +62,7 @@ const QuestionModal = ({ onClose, notify }) => {
       .post("/post", data)
       .then((response) => {
         notify("Post has been added");
+        setSubmitButtonDisabled(false);
         onClose();
         navigate(`/user/${id}`);
       })
@@ -83,9 +90,10 @@ const QuestionModal = ({ onClose, notify }) => {
               />
             </button>
             <button
+              disabled={submitButtonaDisabled}
               type="submit"
               onClick={handleAddPost}
-              className="min-w-[38px] h-[38px] bg-[#2e69ff] text-white px-[20px] rounded-full"
+              className="min-w-[38px] h-[38px] bg-[#2e69ff] text-white px-[20px] rounded-full disabled:bg-blue-800 disabled:cursor-wait"
             >
               Add
             </button>
