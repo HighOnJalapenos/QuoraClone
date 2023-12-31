@@ -6,12 +6,7 @@ import AddPost from "./AddComponents/AddPost";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const QuestionModal = ({
-  onClose,
-  notify,
-  submitButtonaDisabled,
-  setSubmitButtonDisabled,
-}) => {
+const QuestionModal = ({ onClose, notify }) => {
   const ref = useRef();
   const id = useSelector((state) => state.auth.user.userId);
   const navigate = useNavigate();
@@ -23,6 +18,7 @@ const QuestionModal = ({
 
   const [formData, setFormData] = useState(initialFormData);
   const [showPost, setShowPost] = useState(false);
+  const [submitButtonaDisabled, setSubmitButtonDisabled] = useState(false);
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -66,7 +62,9 @@ const QuestionModal = ({
         onClose();
         navigate(`/user/${id}`);
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
