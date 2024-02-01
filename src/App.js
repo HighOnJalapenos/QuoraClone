@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Search from "./pages/Search";
 import ComingSoon from "./pages/ComingSoon";
+import ErrorPage from "./pages/ErrorPage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
@@ -62,7 +63,7 @@ function App() {
             <Route path="quoraplus" element={<ComingSoon />} />
             <Route path="messages" element={<ComingSoon />} />
             <Route path="comingsoon" element={<ComingSoon />} />
-            <Route path="*" element={<Navigate to="" />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

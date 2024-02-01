@@ -4,7 +4,7 @@
 
 .dark {
   background-color: rgb(24, 24, 24);
-  scrollbar-color: rgb(24, 24, 24) red;
+  scrollbar-color: rgb(24, 24, 24);
 }
 
 .dark::-webkit-scrollbar {

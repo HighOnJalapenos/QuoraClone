@@ -38,12 +38,12 @@ export default function MainContent() {
     <div>
       <AskQuestion />
       {isLoading ? (
-        <div className="animate-pulse bg-[rgb(239, 240, 240)]">
+        <div>
           {results.map((result, index) => {
             return (
               <div
                 key={index}
-                className="h-48 bg-gray-200 mb-3 border border-[#dee0e1]"
+                className="h-48 bg-gray-200 mb-3 dark:bg-[#262626] dark:border-[#262626] animate-pulse"
               ></div>
             );
           })}

@@ -13,6 +13,7 @@ import { createPortal } from "react-dom";
 export default function Question() {
   const { id } = useParams();
   const { data, isLoading: postLoading } = useGetPostByIdQuery(id);
+  console.log(data);
   const [commentData, setCommentData] = useState([]);
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
   const [portalVisibility, setPortalVisibility] = useState(false);

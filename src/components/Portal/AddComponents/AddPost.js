@@ -49,7 +49,7 @@ const AddPost = ({ setFormData }) => {
       <div>
         <input
           onChange={handleImage}
-          className="block w-full text-sm text-gray-900 dark:border-[rgba(177,179,182,0.2)] border border-gray-300 rounded bg-gray-50 focus:outline-none dark:bg-transparent cursor-pointer"
+          className="block w-full text-sm text-gray-900 dark:text-white dark:border-[rgba(177,179,182,0.2)] border border-gray-300 rounded bg-gray-50 focus:outline-none dark:bg-transparent cursor-pointer"
           name="images"
           type="file"
         />

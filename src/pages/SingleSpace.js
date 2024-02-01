@@ -68,14 +68,16 @@ export default function SingleSpace() {
             </div>
           ) : (
             spacePost?.map((post, i) => {
-              return (
-                <SingleSpacePost
-                  images={post.images}
-                  key={post._id}
-                  id={post._id}
-                  isPost={true}
-                />
-              );
+              if (post) {
+                return (
+                  <SingleSpacePost
+                    images={post.images}
+                    key={post._id}
+                    id={post._id}
+                    isPost={true}
+                  />
+                );
+              }
             })
           )}
         </div>

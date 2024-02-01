@@ -109,9 +109,9 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
             <Link to={`/user/${author._id}`}>
               <div className="h-9 w-9 mr-2 flex-shrink-0 cursor-pointer">
                 <img
-                  src={author ? author.profileImage : DefaultPhoto}
+                  src={author.profileImage ?? DefaultPhoto}
                   alt="authorProfileImage"
-                  className="rounded-full"
+                  className="rounded-full h-full object-cover"
                 />
               </div>
             </Link>
@@ -127,27 +127,26 @@ const Post = React.forwardRef(({ post, image, isPost }, ref) => {
                 {channel && (
                   <>
                     <span className="text-xs">Posted in the channel</span>
-                    <span
-                      onClick={() => navigate(`/spaces/${channel._id}`)}
-                      className="text-xs text-black dark:text-white cursor-pointer"
-                    >
-                      {" "}
-                      {channel.name}
-                    </span>
+                    <Link to={`/spaces/${channel._id}`}>
+                      <span className="text-xs text-black dark:text-white cursor-pointer">
+                        {" "}
+                        {channel.name}
+                      </span>
+                    </Link>
                   </>
                 )}
               </div>
             </div>
           </div>
-          <Link to={isPost ? null : `/question/${_id}`}>
-            <div
-              className={`font-bold text-lg ${
-                !isPost && "cursor-pointer hover:underline"
-              }`}
-            >
-              {title}
-            </div>
-          </Link>
+          {isPost ? (
+            <div className="font-bold text-lg">{title}</div>
+          ) : (
+            <Link to={`/question/${_id}`}>
+              <div className="font-bold text-lg cursor-pointer hover:underline">
+                {title}
+              </div>
+            </Link>
+          )}
           <div className="font-light">{content}</div>
           {image && (
             <div>
