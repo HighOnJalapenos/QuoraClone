@@ -53,9 +53,9 @@ const login = (email, password, appType) => {
         localStorage.setItem(
           "user",
           JSON.stringify({
-            userId: response.data.data._id,
+            userId: response.data.user.data._id,
             token: response.data.token,
-            name: response.data.data.name,
+            name: response.data.data.user.name,
           })
         );
       }
